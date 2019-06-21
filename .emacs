@@ -1,4 +1,4 @@
-;;enable task juggler syntax highlighting
+;; task juggler syntax highlighting
 (load-file "~/.emacs.d/tj3-mode.el")
 
 ;;enable ido mode fuzzy completion
@@ -98,5 +98,35 @@
  )
 ;;manually add this
 (require 'evil)
-(evil-mode 1)
+;(evil-mode 1)
+;;this makes the default buffer state emacs mode - use C-z to go to evil mode and back
+;(setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
+;(setq evil-emacs-state-modes nil)
+
+;;use M-TAB to go in and out of evil mode
+;(global-set-key (kbd "M-+") 'evil-local-mode)
+
+
+;;toggle evil mode and emacs N and E using M-u
+;;The reason for this is that there's not much point in VIM insert mode - just use emacs
+;;but VIM normal mode and visual mode are pretty useful so be able to use them
+
+(defun toggle-evilmode ()
+(interactive)
+(if (bound-and-true-p evil-local-mode)
+    (progn
+					; go emacs
+      (evil-local-mode (or -1 1))
+      (undo-tree-mode (or -1 1))
+      (set-variable 'cursor-type 'bar)
+      )
+  (progn
+					; go evil
+    (evil-local-mode (or 1 1))
+    (set-variable 'cursor-type 'box)
+    )
+  )
+)
+
+(global-set-key (kbd "M-u") 'toggle-evilmode)
 
