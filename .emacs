@@ -23,6 +23,10 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-iswitch)
 
+;;set the default location for capturing notes
+(setq org-directory "~/Dropbox/notes")
+(setq org-default-notes-file (concat org-directory "/org-notes.org"))
+
 ;;set the files for org-mode refile - all headings within opened org mode files
 (defun +org/opened-buffer-files ()
   "Return the list of files currently opened in emacs"
