@@ -14,6 +14,8 @@
 
 ;;enable org mode
 (require 'org)
+;;but start with all levels open when we open a file
+(setq org-startup-folded nil)
 
 ;;these commands allow inserting of todays date automatically
 (require 'calendar)
