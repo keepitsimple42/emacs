@@ -17,6 +17,26 @@
 ;;but start with all levels open when we open a file
 (setq org-startup-folded nil)
 
+;;org agenda keys from p3 of org-mode manual
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitch)
+
+;;set the files for org-mode refile - all headings within opened org mode files
+(defun +org/opened-buffer-files ()
+  "Return the list of files currently opened in emacs"
+  (delq nil
+	(mapcar (lambda (x)
+		  (if (and (buffer-file-name x)
+			   (string-match "\\.org$"
+					 (buffer-file-name x)))
+		      (buffer-file-name x)))
+		(buffer-list))))
+
+(setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 9)))
+
+
 ;;these commands allow inserting of todays date automatically
 (require 'calendar)
 (defun insdate-insert-current-date (&optional omit-day-of-week-p)
@@ -91,6 +111,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/notes/masterlist.org" "~/Dropbox/notes/org-mode-test.org")))
  '(package-selected-packages (quote (evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
