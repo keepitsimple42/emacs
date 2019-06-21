@@ -15,6 +15,42 @@
 ;;enable org mode
 (require 'org)
 
+;;these commands allow inserting of todays date automatically
+(require 'calendar)
+(defun insdate-insert-current-date (&optional omit-day-of-week-p)
+      "Insert today's date using the current locale.
+  With a prefix argument, the date is inserted without the day of
+  the week."
+      (interactive "P*")
+      (insert (calendar-date-string (calendar-current-date) nil
+				    omit-day-of-week-p)))
+
+;;bind this to C-x M-d
+ (global-set-key "\C-x\M-d" `insdate-insert-current-date)
+
+
+;;This makes emacs use uk convention of only one space after full-stop (period) to the snetence jump commands work
+(setq sentence-end-double-space nil)
+
+;;this enable automatic capitalisation at the start of sentences
+(load-file "~/.emacs.d/auto-capitalize.el")
+(add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
+
+;;This makes typing two spaces after a work produce a full-stop just like iOS devices do
+(defun freaky-space ()
+  (interactive)
+  (cond ((looking-back "\\(?:^\\|\\.\\)  +")
+	 (insert " "))
+	((eq this-command
+	     last-command)
+	 (backward-delete-char 1)
+	 (insert ". "))
+	(t
+	 (insert " "))))
+
+(define-key text-mode-map " " 'freaky-space)
+
+
 ;;remap beginning of buffer as M-< doesn't work on Terminus with linode
 ;;however I have found that C-x [ and C-x ] go to start and end of buffer
 (global-set-key (kbd "M-1") 'beginning-of-buffer)
