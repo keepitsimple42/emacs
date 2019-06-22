@@ -26,6 +26,26 @@
 ;;set the default location for capturing notes
 (setq org-directory "~/Dropbox/notes")
 (setq org-default-notes-file (concat org-directory "/org-notes.org"))
+(setq my-journal-file (concat org-directory "/org-journal.org"))
+(setq my-ideas-file (concat org-directory "/org-ideas.org"))
+
+
+;;set up org capture templates
+;(setq org-capture-templates
+;      '(("t" "Todo" entry (file+headline org-default-notes-file  "Tasks")
+;	 "* TODO  %?\n %i\n %a ")
+;	("j" "Journal" entry (file+datetree "~/Dropbox/notes/org-journal.org")
+;	 "* %?\n Entered on %U\n %i\n %a")))
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline org-default-notes-file  "Tasks")
+	 "* TODO  %?\n %i\n %a ")
+	("j" "Journal" entry (file+datetree my-journal-file)
+	 "* %?\n Entered on %U\n %i\n %a")
+	("i" "Ideas" entry (file+datetree my-ideas-file)
+	 "* %?\nEntered on %U\n %a")))
+
+
 
 ;;set the files for org-mode refile - all headings within opened org mode files
 (defun +org/opened-buffer-files ()
@@ -117,7 +137,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/masterlist.org" "~/Dropbox/notes/org-mode-test.org")))
+    ("~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages (quote (evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
