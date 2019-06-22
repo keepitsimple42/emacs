@@ -29,14 +29,7 @@
 (setq my-journal-file (concat org-directory "/org-journal.org"))
 (setq my-ideas-file (concat org-directory "/org-ideas.org"))
 
-
-;;set up org capture templates
-;(setq org-capture-templates
-;      '(("t" "Todo" entry (file+headline org-default-notes-file  "Tasks")
-;	 "* TODO  %?\n %i\n %a ")
-;	("j" "Journal" entry (file+datetree "~/Dropbox/notes/org-journal.org")
-;	 "* %?\n Entered on %U\n %i\n %a")))
-
+;; set up some simple templates for todo, ideas and journal
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline org-default-notes-file  "Tasks")
 	 "* TODO  %?\n %i\n %a ")
