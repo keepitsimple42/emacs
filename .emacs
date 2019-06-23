@@ -131,7 +131,7 @@
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
- '(package-selected-packages (quote (evil))))
+ '(package-selected-packages (quote (org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -172,3 +172,36 @@
 
 (global-set-key (kbd "M-u") 'toggle-evilmode)
 
+
+
+;; ************************Org Chef********************
+;; org-mode recipes
+;;
+;;this bit downloads org-chef
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(require 'use-package)
+
+(use-package org-chef
+	       :ensure t)
+
+
+;; this sets up org-capture for org-chef
+(setq my-recipes-file (concat org-directory "/org-recipes.org"))
+
+
+
+(setq org-capture-templates (append org-capture-templates 
+      '(("c" "Cookbook" entry (file my-recipes-file)
+	 "%(org-chef-get-recipe-from-url)"
+	 :empty-lines 1)
+	("m" "Manual Cookbook" entry (file my-recipes-file)
+	          "* %^{Recipe title: }\n  :PROPERTIES:\n  :source-url:\n  :servings:\n  :prep-time:\n  :cook-time:\n  :ready-in:\n  :END:\n** Ingredients\n   %?\n** Directions\n\n"))))
+
+
+
+
+
+;;******************************end of org-chef stuff*************************
