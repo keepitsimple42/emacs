@@ -315,6 +315,27 @@ picked from random-quote-file."
 ;;******************************
 
 
+;;persisting the history between emacs sessions.....awesome!
+
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring last-kbd-macro kmacro-ring shell-command-history))
+(setq kmacro-ring-max 42)
+(setq history-delete-duplicates t)
+(if (equal "work" (getenv "SYSENV"))
+    (if (file-exists-p "~/workorg")
+	(setq savehist-file "~/workorg/emacshistory")
+      )
+  (if (file-exists-p "~/Dropbox/notes/emacshistory")
+      (setq savehist-file "~/Dropbox/notes/emacshistory/emacshistory")
+    )
+  (if (file-exists-p savehist-file)
+      (load-file savehist-file)
+    )
+
+  )
+ (savehist-mode 1)
+
+
+
 ;;set location
 (setq calendar-latitude 51.6)
 (setq calendar-longitude 3.0)
@@ -342,3 +363,4 @@ picked from random-quote-file."
 
 
 ;;***************************************************************************
+(setq initial-buffer-choice "my-buffer")
