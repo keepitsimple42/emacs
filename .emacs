@@ -364,3 +364,13 @@ picked from random-quote-file."
 
 ;;***************************************************************************
 (setq initial-buffer-choice "my-buffer")
+
+
+
+;;****************************org-babel************************************
+;;add further languages here as required
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+    '((python . t)
+      ))
