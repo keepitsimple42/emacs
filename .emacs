@@ -1,3 +1,11 @@
+;;use the melpa emacs package archive
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+
+
+
 ;; task juggler syntax highlighting
 (load-file "~/.emacs.d/tj3-mode.el")
 
@@ -26,9 +34,10 @@
 ;;first download package using M-x install-package RET rainbow-delimiters RET
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-;;enable relative line numbering - didnt work for me (needs MELPA?)
+;;enable relative line numbering
 ;;M-x package-install linum-relative
-;;(require 'linum-relative) commented out
+(require 'linum-relative)
+(add-hook 'prog-mode-hook #'linum-relative-mode)
 
 ;;enable org mode
 (require 'org)
@@ -134,9 +143,6 @@
 (global-set-key (kbd "M-,") 'org-do-promote)
 
 ;;evil mode
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
 
 ;;type
 ;;  M-x package-refresh-contents
@@ -361,7 +367,7 @@ picked from random-quote-file."
 ;;set local time
 (set-time-zone-rule "GMT-1")
 
-;;*****************Make emacs to some custom things on start up************
+;;*****************Make emacs do some custom things on start up************
 
 (add-hook 'emacs-startup-hook 'my-startup-fcn)
 (defun my-startup-fcn ()
