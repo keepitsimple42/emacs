@@ -12,6 +12,24 @@
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
+;;function to create a new empty buffer
+(defun mark-new-buffer-frame ()
+  "Create a new frame with a new empty buffer."
+  (interactive)
+  (let ((buffer (generate-new-buffer "untitled")))
+    (set-buffer-major-mode buffer)
+        (display-buffer buffer '(display-buffer-pop-up-frame . nil))))
+;;bind this to C-c n
+(global-set-key (kbd "C-c n") #'mark-new-buffer-frame)
+
+;;enable rainbow-brackets in programming modes
+;;first download package using M-x install-package RET rainbow-delimiters RET
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;enable relative line numbering - didnt work for me (needs MELPA?)
+;;M-x package-install linum-relative
+;;(require 'linum-relative) commented out
+
 ;;enable org mode
 (require 'org)
 ;;but start with all levels open when we open a file
@@ -131,7 +149,7 @@
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
- '(package-selected-packages (quote (org-chef evil))))
+ '(package-selected-packages (quote (linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -372,5 +390,12 @@ picked from random-quote-file."
 
 (org-babel-do-load-languages
   'org-babel-load-languages
-    '((python . t)
-      ))
+    '((python . t)))
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+    '((ditaa . t)))
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+    '((emacs-lisp . t)))
