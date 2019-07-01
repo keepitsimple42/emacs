@@ -1,3 +1,12 @@
+;;Note several of the packages loaded require you to launch emacs and type
+;; M-x package-install <RET>  package-name  <RET> the very first time
+;;I'll try to list these here (and in the comments in this file too)
+;;M-x rainbow-delimiters
+;;M-x linum-relative
+;;M-x evil
+;;M-x 
+
+
 ;;use the melpa emacs package archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -31,7 +40,7 @@
 (global-set-key (kbd "C-c n") #'mark-new-buffer-frame)
 
 ;;enable rainbow-brackets in programming modes
-;;first download package using M-x install-package RET rainbow-delimiters RET
+;;first download package using M-x package-install RET rainbow-delimiters RET
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;enable relative line numbering
