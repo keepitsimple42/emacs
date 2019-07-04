@@ -24,7 +24,7 @@
 (ido-mode 1)
 
 ;;bump up the cut/copy buffer from its default of 60 - never lose anything you delete!
-(setq kill-ring-max 256)
+(setq kill-ring-max 1024)
 
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
