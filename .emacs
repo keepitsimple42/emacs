@@ -16,7 +16,7 @@
 
 
 ;; task juggler syntax highlighting
-(load-file "~/.emacs.d/tj3-mode.el")
+(load-file "~/.emacs.d/lisp/tj3-mode.el")
 
 ;;enable ido mode fuzzy completion
 (setq ido-enable-flex-matching t)
@@ -108,10 +108,10 @@
 (setq sentence-end-double-space nil)
 
 ;;this enable automatic capitalisation at the start of sentences
-(load-file "~/.emacs.d/auto-capitalize.el")
+(load-file "~/.emacs.d/lisp/auto-capitalize.el")
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
 
-;;This makes typing two spaces after a work produce a full-stop just like iOS devices do
+;;This makes typing two spaces after a word produce a full-stop just like iOS devices do
 (defun freaky-space ()
   (interactive)
   (cond ((looking-back "\\(?:^\\|\\.\\)  +")
@@ -414,3 +414,43 @@ picked from random-quote-file."
 (org-babel-do-load-languages
   'org-babel-load-languages
     '((emacs-lisp . t)))
+
+
+
+
+
+
+
+;;***************************************ACE JUMP MODE****************************************
+
+;;
+;; ace jump mode major function
+;;
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+;; you can select the key you prefer to
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+
+
+;;
+;; enable a more powerful jump back function from ace jump mode
+;;
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;;If you use viper mode :
+;;(define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
+;;If you use evil
+(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
