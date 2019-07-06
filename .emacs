@@ -382,7 +382,7 @@ picked from random-quote-file."
 (add-hook 'emacs-startup-hook 'my-startup-fcn)
 (defun my-startup-fcn ()
   "do fancy things"
-  (let ((my-buffer (get-buffer-create "my-buffer")))
+  (let ((my-buffer (get-buffer-create "*my-buffer*")))
     (with-current-buffer my-buffer
       ;; this is what you customize
       (insert "Every day is a fresh start\n\n")
