@@ -12,7 +12,8 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-
+;;this enables C-c C-d to duplicate the line and move to the start of it
+(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y\C-p")
 
 
 ;; task juggler syntax highlighting
@@ -434,7 +435,7 @@ picked from random-quote-file."
   t)
 ;; you can select the key you prefer to
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
+(define-key global-map (kbd "M-+") 'ace-jump-mode) ;; this is M-TAB on Terminus!
 
 
 ;;
