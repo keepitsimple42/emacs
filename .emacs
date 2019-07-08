@@ -13,7 +13,7 @@
 (package-initialize)
 
 ;;this enables C-c C-d to duplicate the line and move to the start of it
-(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y\C-p")
+(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y\C-p") ;;need to change as is overridden in org-capture
 
 
 ;; task juggler syntax highlighting
@@ -52,7 +52,7 @@
 ;;enable org mode
 (require 'org)
 ;;but start with all levels open when we open a file
-(setq org-startup-folded nil)
+;;(setq org-startup-folded nil)  ;;actually its better to start with the default closed
 
 ;;org agenda keys from p3 of org-mode manual
 (global-set-key "\C-cl" 'org-store-link)
