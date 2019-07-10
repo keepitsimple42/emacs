@@ -165,7 +165,9 @@
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
- '(package-selected-packages (quote (linum-relative rainbow-delimiters org-chef evil))))
+ '(package-selected-packages
+   (quote
+    (smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -454,4 +456,19 @@ picked from random-quote-file."
 ;;(define-key viper-vi-global-user-map (kbd "SPC") 'ace-jump-mode)
 ;;If you use evil
 (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+
+;;ace-window
+(global-set-key (kbd "C-x o") 'ace-window)
+
+;;enable auto-complete mode by default M-x package-install RET auto-complete
+(require 'auto-complete)
+(global-auto-complete-mode t)
+
+;;enable smex
+(require 'smex)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;this is the old M-x
+
+ 
 
