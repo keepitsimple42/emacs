@@ -30,6 +30,12 @@
 ;;bump up the cut/copy buffer from its default of 60 - never lose anything you delete!
 (setq kill-ring-max 1024)
 
+;;reduce the amount of characters typed between auto-saves from 300 and the time before saving
+;;when idle
+(setq auto-save-interval 100)
+(setq auto-save-timeout 10)
+
+      
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
@@ -394,6 +400,8 @@ picked from random-quote-file."
       (insert (calendar-date-string (calendar-current-date)))
       (insert "\n\n")
       (insert (format-time-string "%y-%m-%d %H-%M-%S \n\n"))
+      (insert (number-to-string (time-to-day-in-year (current-time))))
+      (insert "\n\n")
       (insert (sunrise-sunset))
       (insert "\n\n")
       (insert (pick-random-quote)))
