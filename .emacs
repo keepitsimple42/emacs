@@ -1,13 +1,14 @@
 ;;Note several of the packages loaded require you to launch emacs and type
 ;; M-x package-install <RET>  package-name  <RET> the very first time
 ;;I'll try to list these here (and in the comments in this file too)
-;;M-x rainbow-delimiters
-;;M-x linum-relative
-;;M-x evil
-;;M-x 
+;;rainbow-delimiters
+;;linum-relative
+;;evil
+;;auto-complete 
+;;smex
+;;multiple-cursors
 
-
-;;use the melpa emacs package archive
+;; the melpa emacs package archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -167,7 +168,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -462,7 +463,12 @@ picked from random-quote-file."
 
 ;;enable auto-complete mode by default M-x package-install RET auto-complete
 (require 'auto-complete)
+(add-to-list 'ac-modes 'org-mode)
+(add-to-list 'ac-modes 'markdown-mode)
+(add-to-list 'ac-modes 'text-mode)
+(ac-config-default)
 (global-auto-complete-mode t)
+
 
 ;;enable smex
 (require 'smex)
@@ -470,5 +476,9 @@ picked from random-quote-file."
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;this is the old M-x
 
- 
+;;set up multiple cursors
+(require 'multiple-cursors) ;;need to install M-x package-install RET multiple-cursors
+;;invoke - when you have an actove region spanning multiple lines - this adds cursors
+(global-set-key (kbd "C-c C-m C-c") 'mc/edit-lines)
+
 
