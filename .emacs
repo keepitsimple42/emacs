@@ -6,6 +6,8 @@
 ;;evil
 ;;auto-complete 
 ;;smex
+;;ace-jump
+;;ace-window
 ;;multiple-cursors
 
 ;; the melpa emacs package archive
@@ -14,7 +16,7 @@
 (package-initialize)
 
 ;;this enables C-c C-d to duplicate the line and move to the start of it
-(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y\C-p") ;;need to change as is overridden in org-capture
+(global-set-key "\C-c\C-w" "\C-a\C- \C-n\M-w\C-y\C-p") 
 
 
 ;; task juggler syntax highlighting
