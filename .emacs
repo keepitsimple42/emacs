@@ -18,6 +18,9 @@
 ;;this enables C-c C-d to duplicate the line and move to the start of it
 (global-set-key "\C-c\C-w" "\C-a\C- \C-n\M-w\C-y\C-p") 
 
+;; auto close bracket insertion. New in emacs 24
+(electric-pair-mode 1)
+
 
 ;; task juggler syntax highlighting
 (load-file "~/.emacs.d/lisp/tj3-mode.el")
@@ -176,7 +179,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -612,5 +615,8 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 (delete-old-backups "~/Dropbox/EmacsBackup/per-session/")
 (delete-old-backups "~/Dropbox/EmacsBackup/per-save/")
 
+
+;;******** magit********
+(global-set-key (kbd "C-x g") 'magit-status)
 
 
