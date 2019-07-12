@@ -40,6 +40,9 @@
 
 ;; task juggler syntax highlighting
 (load-file "~/.emacs.d/lisp/tj3-mode.el")
+(load-file "~/.emacs.d/lisp/i-ching.el")
+
+
 
 ;;enable ido mode fuzzy completion
 (setq ido-enable-flex-matching t)
@@ -468,6 +471,7 @@ picked from random-quote-file."
 ;; you can select the key you prefer to
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "M-+") 'ace-jump-mode) ;; this is M-TAB on Terminus!
+
 
 
 ;;

@@ -1,0 +1,30 @@
+
+;; ----- smex-history -----
+(
+ shell
+ pomidor
+ package-install
+ pomodoro
+ name-last-kbd-macro
+ magit-version
+ package-refresh-contents
+)
+
+;; ----- smex-data -----
+(
+ (shell . 9)
+ (package-install . 5)
+ (occur . 3)
+ (auto-complete . 6)
+ (lunar-phases . 1)
+ (horoscope . 2)
+ (ispell-buffer . 1)
+ (insert-column-counter . 2)
+ (recover-this-file . 1)
+ (package-refresh-contents . 1)
+ (magit-version . 1)
+ (name-last-kbd-macro . 1)
+ (silly . 1)
+ (pomodoro . 10)
+ (pomidor . 1)
+)
