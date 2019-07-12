@@ -21,6 +21,22 @@
 ;; auto close bracket insertion. New in emacs 24
 (electric-pair-mode 1)
 
+;;word count mode
+(setq load-path (cons (expand-file-name "~/.emacs.d/lisp") load-path))
+(autoload 'word-count-mode "word-count"
+          "Minor mode to count words." t nil)
+(global-set-key "\M-=" 'word-count-mode)
+
+;;a really simple pomodoro timer
+;; (defun pomodoro ()
+;;   (interactive)
+;;   (run-at-time (* 25 60) nil (lambda () (message "\n\n\n\n\n******************************\nTime's up\nLet's take a break\n******************************\n\n\n\n")
+;; 					 (switch-to-buffer "*Messages*")
+;; 			      (ding))))
+
+;;a better one I found on the internet lol!
+(add-to-list 'load-path "~/.emacs.d/pomidor/")
+(require 'pomidor)
 
 ;; task juggler syntax highlighting
 (load-file "~/.emacs.d/lisp/tj3-mode.el")
@@ -179,7 +195,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
