@@ -96,11 +96,15 @@
 (setq org-default-notes-file (concat org-directory "/org-notes.org"))
 (setq my-journal-file (concat org-directory "/org-journal.org"))
 (setq my-ideas-file (concat org-directory "/org-ideas.org"))
+(setq my-post-it-file (concat org-directory "/Post-It.org"))
+
 
 ;; set up some simple templates for todo, ideas and journal
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline org-default-notes-file  "Tasks")
 	 "* TODO  %?\n Entered on %U\n %i\n %a ")
+	("p" "Post-It" entry (file+headline my-post-it-file "Post-It Notes")
+	 "* %?\n Entered on %U\n %i\n %a ")
 	("j" "Journal" entry (file+datetree my-journal-file)
 	 "* %?\n Entered on %U\n %i\n %a")
 	("i" "Ideas" entry (file+datetree my-ideas-file)
@@ -204,7 +208,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 158 :width normal)))))
 ;;manually add this
 (require 'evil)
 ;(evil-mode 1)
