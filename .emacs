@@ -519,6 +519,11 @@ Default is 5 MB")
 (defvar bjm/backup-location (expand-file-name "~/Dropbox/EmacsBackup")
   "Base directory for backup files.")
 
+;;********TODO******
+;;detect if running on pi or computer without dropbox and save somewhere else
+;;possibly creating backup folder if it doesn't exist
+;;if efiting remotely via Tramp get it to still back up locally not on remote computer
+
 (defvar bjm/backup-trash-dir (expand-file-name "~/.Trash")
   "Directory for unwanted backups.")
 
