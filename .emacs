@@ -426,7 +426,14 @@ picked from random-quote-file."
       (insert (calendar-date-string (calendar-current-date)))
       (insert "\n\n")
       (insert (format-time-string "%y-%m-%d %H-%M-%S \n\n"))
+      ;;the number of days elapsed this year
       (insert (number-to-string (time-to-day-in-year (current-time))))
+      (insert "\n\n")
+      ;;the number of days left to go this year
+      (insert (number-to-string (org-time-stamp-to-now "2019-12-31")))
+      (insert "\n\n")
+      ;; the number of days until I am 60
+      (insert (number-to-string (org-time-stamp-to-now "2028-01-07")))
       (insert "\n\n")
       (insert (sunrise-sunset))
       (insert "\n\n")
