@@ -25,7 +25,7 @@
 ;; create a symlink like this
 ;; ln -s ~/Dropbox/notes ~/.deft
 (require 'deft)
-
+(global-set-key "\C-cd" "\M-x deft")
 
 (require 'hydra)
 (load-file "~/.emacs.d/lisp/myhydras.el")
