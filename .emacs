@@ -31,21 +31,30 @@
 (setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp"))
 (setq deft-default-extension "org")
 
+
 (require 'hydra)
+
+(require 'smartparens-config) ;;this is in smartparens.el too
+;;(load-file "~/.emacs.d/lisp/smartparens.el") needs hydra to work and has bugs it seems
+
 (load-file "~/.emacs.d/lisp/myhydras.el")
 ;;use C-c h be the prefix for all my hydra menus
 (use-package hydra
   :bind ("C-c h o" . hydra-global-org/body))
+(use-package hydra
+  :bind ("C-c h p" . smartparens-hydra/body))
+
 
 ;;this enables C-c C-d to duplicate the line and move to the start of it
 (global-set-key "\C-c\C-w" "\C-a\C- \C-n\M-w\C-y\C-p") 
 
-;;(require 'smartparens-config) this is now in smartparens.el
-;;(load-file "~/.emacs.d/lisp/smartparens.el") needs hydra to work and has bugs it seems
 
 
 ;; auto close bracket insertion. New in emacs 24
 (electric-pair-mode 1)
+;; highlight matching parens too
+(setq show-paren-delay 0)
+(show-paren-mode 1)
 
 ;;word count mode
 (setq load-path (cons (expand-file-name "~/.emacs.d/lisp") load-path))
