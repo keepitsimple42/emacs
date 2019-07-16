@@ -9,14 +9,36 @@
 ;;ace-jump
 ;;ace-window
 ;;multiple-cursors
+;;smartparens
+;;deft
 
 ;; the melpa emacs package archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(add-to-list 'package-archives
+	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(package-initialize)
+
+;;quick searching a-la notational velocity
+;; create a symlink like this
+;; ln -s ~/Dropbox/notes ~/.deft
+(require 'deft)
+
+
+(require 'hydra)
+(load-file "~/.emacs.d/lisp/myhydras.el")
+;;use C-c h be the prefix for all my hydra menus
+(use-package hydra
+  :bind ("C-c h o" . hydra-global-org/body))
+
 ;;this enables C-c C-d to duplicate the line and move to the start of it
 (global-set-key "\C-c\C-w" "\C-a\C- \C-n\M-w\C-y\C-p") 
+
+;;(require 'smartparens-config) this is now in smartparens.el
+;;(load-file "~/.emacs.d/lisp/smartparens.el") needs hydra to work and has bugs it seems
+
 
 ;; auto close bracket insertion. New in emacs 24
 (electric-pair-mode 1)
@@ -98,6 +120,8 @@
 (setq my-ideas-file (concat org-directory "/org-ideas.org"))
 (setq my-post-it-file (concat org-directory "/Post-It.org"))
 
+;set the done archive
+;(setq org-archive-location (concat org-directory “/archived.org”))
 
 ;; set up some simple templates for todo, ideas and journal
 (setq org-capture-templates
@@ -202,7 +226,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -533,7 +557,7 @@ picked from random-quote-file."
 ;; https://www.emacswiki.org/emacs/BackupFiles
 (setq
  backup-by-copying t     ; don't clobber symlinks
- kept-new-versions 500    ; keep latest versions
+ kept-new-versions 1000    ; keep latest versions
  kept-old-versions 0     ; don't bother with old versions
  delete-old-versions t   ; don't ask about deleting old versions
  version-control t       ; number backups
@@ -632,7 +656,7 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 ;;per save and per session
 
 (defun delete-old-backups (my-backup-directory)
-			 "Deletes old backups"
+			 "Deletes old backups...currently after two weeks"
 (message "Deleting old backup files...")
 (let ((week (* 60 60 24 14))
       (current (float-time (current-time))))
@@ -647,7 +671,7 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 (delete-old-backups "~/Dropbox/EmacsBackup/per-save/")
 
 
-;;******** magit********
+;;******** magit ********
 (global-set-key (kbd "C-x g") 'magit-status)
 
 
