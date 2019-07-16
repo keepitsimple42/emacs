@@ -26,6 +26,9 @@
 ;; ln -s ~/Dropbox/notes ~/.deft
 (require 'deft)
 (global-set-key "\C-cd" "\M-x deft")
+(setq deft-use-filename-as-title t)
+(setq deft-directory "~/Dropbox/notes") ;;no need to do the symlink thingy above now
+(setq deft-extensions '("txt" "tex" "md" "markdown" "org" "py" "el" "c" "tjp"))
 
 (require 'hydra)
 (load-file "~/.emacs.d/lisp/myhydras.el")
