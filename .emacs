@@ -189,6 +189,41 @@
 
 (setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 9)))
 
+;;******************************* Filing away DONE tasks ************************
+
+
+;;a function to refile done tasks into a single file
+(setq org-archive-location (expand-file-name (concat org-directory "/DONE.org_archive::")))
+
+;this will file a single task if its the currently selected one and its status is done
+(defun archive-when-done ()
+  "Archive current entry if it is marked as DONE (see `org-done-keywords')."
+  (when (org-entry-is-done-p)
+        (org-archive-subtree-default)))
+
+
+;; this function maps the above to each headline in the org file, but for some reason will archive the first DONE item it comes to it and then exit - don't know why, but we've got a workaround!
+(defun org-archive-done-tasks1 ()
+;  (interactive)
+  (org-map-entries 
+     'archive-when-done))
+
+
+;;count the number of entries matching a criteria
+;; (defun numdone ()
+;;   (interactive) (message (number-to-string
+;; (length (org-map-entries t "+/DONE" 'file)))))
+
+;;repeat the map function the right number of times = as many times as there are done items in the list  Strangely the org-map-entries works for selection without exiting
+(defun org-archive-done-tasks ()
+    (interactive)
+  (dotimes (n (length (org-map-entries t "+/DONE" 'file)))(org-archive-done-tasks1)))
+;dotimes syntax
+;(dotimes (n 5) (print n) )
+
+;map this to C-czd (zap done)
+(global-set-key "\C-czd" `org-archive-done-tasks)
+
 
 ;;these commands allow inserting of todays date automatically
 (require 'calendar)
