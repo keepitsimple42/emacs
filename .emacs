@@ -21,6 +21,22 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;;fly spell
+(dolist (hook '(text-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
+(setq flyspell-issue-message-flag nil) ;;to improve performance
+(setq ispell-personal-dictionary "~/Dropbox/notes/EmacsDict/.aspell.en.pws")
+
+(use-package flyspell
+  :ensure t
+  :defer 1
+  :custom
+  (flyspell-abbrev-p t)
+  (flyspell-issue-message-flag nil)
+  (flyspell-issue-welcome-flag nil)
+    (flyspell-mode 1))
+
+
 ;;quick searching a-la notational velocity
 ;; create a symlink like this
 ;; ln -s ~/Dropbox/notes ~/.deft
@@ -43,6 +59,8 @@
   :bind ("C-c h o" . hydra-global-org/body))
 (use-package hydra
   :bind ("C-c h p" . smartparens-hydra/body))
+(use-package hydra
+  :bind ("C-c h s" . hydra-spelling/body))
 
 
 ;;this enables C-c C-d to duplicate the line and move to the start of it
