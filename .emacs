@@ -36,6 +36,12 @@
   (flyspell-issue-welcome-flag nil)
     (flyspell-mode 1))
 
+(setq abbrev-file-name             ;; tell emacs where to read abbrev
+      "~/Dropbox/notes/EmacsDict/abbrev_defs")    ;; definitions from...
+(setq save-abbrevs 'silent)        ;; save abbrevs when files are saved
+(setq-default abbrev-mode t)       ;;switch it on
+(setq save-abbrevs 'silently)       ;; don't prompt for saving on closing emacs
+
 
 ;;quick searching a-la notational velocity
 ;; create a symlink like this
