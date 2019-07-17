@@ -21,6 +21,13 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+(load-file "~/.emacs.d/lisp/adaptive-wrap.el")
+;(adaptive-wrap-prefix-mode 1)
+
+;adaptive-wrap-prefix-mode doesnt have a global mode, but it depends upon visual-line-mode which does so; add a hook to enable it whenever the latter is on
+(add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode)
+(global-visual-line-mode 1)
+
 ;;fly spell ENABLE
 ;(dolist (hook '(text-mode-hook))
 ;  (add-hook hook (lambda () (flyspell-mode 1))))
@@ -261,7 +268,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
