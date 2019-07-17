@@ -21,7 +21,7 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
-;;fly spell
+;;fly spell ENABLE
 (dolist (hook '(text-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (setq flyspell-issue-message-flag nil) ;;to improve performance
@@ -36,16 +36,12 @@
   (flyspell-issue-welcome-flag nil)
     (flyspell-mode 1))
 
-(setq abbrev-file-name             ;; tell emacs where to read abbrev
-      "~/Dropbox/notes/EmacsDict/abbrev_defs")    ;; definitions from...
-(setq save-abbrevs 'silent)        ;; save abbrevs when files are saved
-(setq-default abbrev-mode t)       ;;switch it on
-(setq save-abbrevs 'silently)       ;; don't prompt for saving on closing emacs
 
 
 ;;quick searching a-la notational velocity
 ;; create a symlink like this
 ;; ln -s ~/Dropbox/notes ~/.deft
+
 (require 'deft)
 (global-set-key "\C-cd" "\M-x deft")
 (setq deft-use-filename-as-title t)
@@ -140,7 +136,7 @@
 (add-hook 'prog-mode-hook #'linum-relative-mode)
 
 ;;enable org mode
-(require 'org)
+;(require 'org)
 ;;but start with all levels open when we open a file
 ;;(setq org-startup-folded nil)  ;;actually its better to start with the default closed
 
@@ -209,16 +205,18 @@
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
 
 ;;This makes typing two spaces after a word produce a full-stop just like iOS devices do
+;;i had to modify this adding the progn and expand abbrev - beacause otherwise abbrev didn't
+;;work on org-mode for some reason
 (defun freaky-space ()
   (interactive)
-  (cond ((looking-back "\\(?:^\\|\\.\\)  +")
+  (progn (expand-abbrev) (cond ((looking-back "\\(?:^\\|\\.\\)  +")
 	 (insert " "))
 	((eq this-command
 	     last-command)
 	 (backward-delete-char 1)
 	 (insert ". "))
 	(t
-	 (insert " "))))
+	 (insert " ")))))
 
 (define-key text-mode-map " " 'freaky-space)
 
@@ -712,3 +710,10 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 (global-set-key (kbd "C-x g") 'magit-status)
 
 
+
+;;enable abbreviation expansion
+(setq abbrev-file-name             ;; tell emacs where to read abbrev
+      "~/Dropbox/notes/EmacsDict/abbrev_defs")    ;; definitions from
+(setq save-abbrevs 'silent)        ;; save abbrevs when files are saved
+(setq-default abbrev-mode t)       ;;switch it on
+;(setq save-abbrevs 'silently)       ;; don't prompt for saving on closing emacs
