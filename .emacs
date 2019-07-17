@@ -51,7 +51,7 @@
 (setq deft-use-filename-as-title t)
 (setq deft-directory "~/Dropbox/notes") ;;no need to do the symlink thingy above now
 (setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp"))
-(setq deft-default-extension "org")
+(setq deft-default-extension "md")
 
 
 (require 'hydra)
