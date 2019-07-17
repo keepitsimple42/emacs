@@ -22,8 +22,8 @@
 (package-initialize)
 
 ;;fly spell ENABLE
-(dolist (hook '(text-mode-hook))
-  (add-hook hook (lambda () (flyspell-mode 1))))
+;(dolist (hook '(text-mode-hook))
+;  (add-hook hook (lambda () (flyspell-mode 1))))
 (setq flyspell-issue-message-flag nil) ;;to improve performance
 (setq ispell-personal-dictionary "~/Dropbox/notes/EmacsDict/.aspell.en.pws")
 
@@ -565,7 +565,8 @@ picked from random-quote-file."
 (global-set-key (kbd "C-x o") 'ace-window)
 
 ;;enable auto-complete mode by default M-x package-install RET auto-complete
-(require 'auto-complete)
+;(require 'auto-complete)
+(use-package auto-complete :config (ac-flyspell-workaround))
 (add-to-list 'ac-modes 'org-mode)
 (add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-modes 'text-mode)
@@ -714,6 +715,6 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 ;;enable abbreviation expansion
 (setq abbrev-file-name             ;; tell emacs where to read abbrev
       "~/Dropbox/notes/EmacsDict/abbrev_defs")    ;; definitions from
-(setq save-abbrevs 'silent)        ;; save abbrevs when files are saved
+;(setq save-abbrevs 'silent)        ;; save abbrevs when files are saved
 (setq-default abbrev-mode t)       ;;switch it on
-;(setq save-abbrevs 'silently)       ;; don't prompt for saving on closing emacs
+(setq save-abbrevs 'silently)       ;; don't prompt for saving on closing emacs
