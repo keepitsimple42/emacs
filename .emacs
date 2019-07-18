@@ -11,6 +11,7 @@
 ;;multiple-cursors
 ;;smartparens
 ;;deft
+;;geiser
 
 ;; the melpa emacs package archive
 (require 'package)
@@ -303,7 +304,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -547,6 +548,11 @@ picked from random-quote-file."
 (setq initial-buffer-choice "my-buffer")
 
 
+;;***************************geiser*****************************************
+;;sets up a REPL for scheme (such as geiser)
+;(require 'geiser-install)
+
+
 
 ;;****************************org-babel************************************
 ;;add further languages here as required
@@ -562,6 +568,10 @@ picked from random-quote-file."
 (org-babel-do-load-languages
   'org-babel-load-languages
     '((emacs-lisp . t)))
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+    '((scheme  . t)))
 
 
 
