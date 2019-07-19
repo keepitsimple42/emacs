@@ -12,6 +12,7 @@
 ;;smartparens
 ;;deft
 ;;geiser
+;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
 
 ;; the melpa emacs package archive
 (require 'package)
@@ -22,12 +23,28 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;;semantic refactoring
+(require 'srefactor)
+(require 'srefactor-lisp)
+
+(semantic-mode 1)
+(global-set-key (kbd "C-c rp") 'srefactor-refactor-at-point)
+(global-set-key (kbd "C-c rs") 'srefactor-lisp-format-sexp)
+(global-set-key (kbd "C-c rd") 'srefactor-lisp-format-defun)
+(global-set-key (kbd "C-c rb") 'srefactor-lisp-format-buffer)
+
+
 (load-file "~/.emacs.d/lisp/adaptive-wrap.el")
 ;(adaptive-wrap-prefix-mode 1)
 
 ;adaptive-wrap-prefix-mode doesnt have a global mode, but it depends upon visual-line-mode which does so; add a hook to enable it whenever the latter is on
 (add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode)
-(global-visual-line-mode 1)
+;(global-visual-line-mode 1)
+;just load visual line mode in org files only
+(with-eval-after-load 'org
+  (setq org-startup-indented t)
+  (add-hook 'org-mode-hook #'visual-line-mode))
+
 
 ;;fly spell ENABLE
 ;(dolist (hook '(text-mode-hook))
@@ -73,7 +90,7 @@
   :bind ("C-c h s" . hydra-spelling/body))
 
 
-;;this enables C-c C-d to duplicate the line and move to the start of it
+;;this enables C-c C-w to duplicate the line and move to the start of it
 (global-set-key "\C-c\C-w" "\C-a\C- \C-n\M-w\C-y\C-p") 
 
 
@@ -304,7 +321,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
