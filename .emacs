@@ -138,10 +138,10 @@
 ;;first download package using M-x package-install RET rainbow-delimiters RET
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-;;enable relative line numbering
+;;enable relative line numbering - don't really need with ace-jump mode on
 ;;M-x package-install linum-relative
-(require 'linum-relative)
-(add-hook 'prog-mode-hook #'linum-relative-mode)
+;(require 'linum-relative)
+;(add-hook 'prog-mode-hook #'linum-relative-mode)
 
 ;;enable org mode
 ;(require 'org)
