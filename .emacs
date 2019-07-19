@@ -787,3 +787,15 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 ;(setq save-abbrevs 'silent)        ;; save abbrevs when files are saved
 (setq-default abbrev-mode t)       ;;switch it on
 (setq save-abbrevs 'silently)       ;; don't prompt for saving on closing emacs
+
+
+
+; a function to delete leading whitespace
+(defun my-delete-leading-whitespace (start end)
+  "Delete whitespace at the beginning of each line in region."
+  (interactive "*r")
+  (save-excursion
+    (if (not (bolp)) (forward-line 1))
+    (delete-whitespace-rectangle (point) end nil)))
+
+(global-set-key (kbd "C-c kw") 'my-delete-leading-whitespace)
