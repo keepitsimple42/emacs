@@ -71,7 +71,7 @@
 (global-set-key "\C-cd" "\M-x deft")
 (setq deft-use-filename-as-title t)
 (setq deft-directory "~/Dropbox/notes") ;;no need to do the symlink thingy above now
-(setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp"))
+(setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp" "scm"))
 (setq deft-default-extension "md")
 
 
@@ -608,7 +608,7 @@ picked from random-quote-file."
   "Emacs quick move minor mode"
   t)
 ;; you can select the key you prefer to
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-c j") 'ace-jump-mode) ;because C-c SPC was already defined in org mode
 (define-key global-map (kbd "M-+") 'ace-jump-mode) ;; this is M-TAB on Terminus!
 
 
