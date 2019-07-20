@@ -662,7 +662,7 @@ picked from random-quote-file."
 ;; https://www.emacswiki.org/emacs/BackupFiles
 (setq
  backup-by-copying t     ; don't clobber symlinks
- kept-new-versions 1000    ; keep latest versions
+ kept-new-versions 5000    ; keep latest versions
  kept-old-versions 0     ; don't bother with old versions
  delete-old-versions t   ; don't ask about deleting old versions
  version-control t       ; number backups
@@ -763,7 +763,7 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 (defun delete-old-backups (my-backup-directory)
 			 "Deletes old backups...currently after two weeks"
 (message "Deleting old backup files...")
-(let ((week (* 60 60 24 14))
+(let ((week (* 60 60 24 365))  ;let's just make it a year and see!!
       (current (float-time (current-time))))
   (dolist (file (directory-files my-backup-directory t))
     (when (and (backup-file-name-p file)
