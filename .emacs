@@ -662,7 +662,7 @@ picked from random-quote-file."
 ;; https://www.emacswiki.org/emacs/BackupFiles
 (setq
  backup-by-copying t     ; don't clobber symlinks
- kept-new-versions 5000    ; keep latest versions
+ kept-new-versions 10000    ; keep latest versions
  kept-old-versions 0     ; don't bother with old versions
  delete-old-versions t   ; don't ask about deleting old versions
  version-control t       ; number backups
