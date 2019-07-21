@@ -14,6 +14,10 @@
 ;;geiser
 ;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
 
+
+;add to the load path
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;; the melpa emacs package archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -774,6 +778,7 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 
 (delete-old-backups "~/Dropbox/EmacsBackup/per-session/")
 (delete-old-backups "~/Dropbox/EmacsBackup/per-save/")
+
 
 
 ;;******** magit ********
