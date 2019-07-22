@@ -27,6 +27,19 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;;bookmarks
+(setq bookmark-default-file "~/Dropbox/notes/EmacsDict/bookmarks")
+
+;;this puts the last selected bookmark at the top of the list (not sure it works though)
+;; (defadvice bookmark-jump (after bookmark-jump activate)
+;;   (let ((latest (bookmark-get-bookmark bookmark)))
+;;     (setq bookmark-alist (delq latest bookmark-alist))
+;;         (add-to-list 'bookmark-alist latest)))
+
+;;set to save bookmarks file whenever it is changed
+(setq bookmark-save-flag 1)
+
+
 ;;semantic refactoring
 (require 'srefactor)
 (require 'srefactor-lisp)
@@ -77,7 +90,8 @@
 (setq deft-directory "~/Dropbox/notes") ;;no need to do the symlink thingy above now
 (setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp" "scm"))
 (setq deft-default-extension "md")
-
+;try to reduce the autosaves in deft (so we don't have huge number of backups)
+(setq deft-auto-save-interval 300.0)
 
 (require 'hydra)
 
