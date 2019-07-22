@@ -28,13 +28,34 @@
 (package-initialize)
 
 ;;bookmarks
+;(require 'bookmark)
 (setq bookmark-default-file "~/Dropbox/notes/EmacsDict/bookmarks")
 
+;;this lot loads the latest version of bookmarks+ from emacs wiki
+(let ((bookmarkplus-dir "~/.emacs.d/lisp/bookmark-plus/")
+      (emacswiki-base "https://www.emacswiki.org/emacs/download/")
+      (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
+  (require 'url)
+  (add-to-list 'load-path bookmarkplus-dir)
+  (make-directory bookmarkplus-dir t)
+  (mapcar (lambda (arg)
+	    (let ((local-file (concat bookmarkplus-dir arg)))
+	      (unless (file-exists-p local-file)
+		(url-copy-file (concat emacswiki-base arg) local-file t))))
+	  bookmark-files)
+  (byte-recompile-directory bookmarkplus-dir 0)
+  (require 'bookmark+))
+
+ 
+
+
 ;;this puts the last selected bookmark at the top of the list (not sure it works though)
-;; (defadvice bookmark-jump (after bookmark-jump activate)
-;;   (let ((latest (bookmark-get-bookmark bookmark)))
-;;     (setq bookmark-alist (delq latest bookmark-alist))
-;;         (add-to-list 'bookmark-alist latest)))
+ ;; (defadvice bookmark-jump (after bookmark-jump activate)
+ ;;  (let ((latest (bookmark-get-bookmark bookmark)))
+ ;;    (setq bookmark-alist (delq latest bookmark-alist))
+ ;;    (add-to-list 'bookmark-alist latest)
+ ;;   ; (setq TEMP bookmark-alist)
+ ;;    ))
 
 ;;set to save bookmarks file whenever it is changed
 (setq bookmark-save-flag 1)
