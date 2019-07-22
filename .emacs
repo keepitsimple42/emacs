@@ -545,8 +545,8 @@ picked from random-quote-file."
 
 
 ;;set location
-(setq calendar-latitude 51.6)
-(setq calendar-longitude 3.0)
+(setq calendar-latitude 51.808311)
+(setq calendar-longitude -3.132150)
      (setq calendar-location-name "Newport, Gwent")
 ;;set local time
 (set-time-zone-rule "GMT-1")
