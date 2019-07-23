@@ -12,6 +12,7 @@
 ;;smartparens
 ;;deft
 ;;geiser
+;;markdown-mode
 ;;paredit
 ;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
 
