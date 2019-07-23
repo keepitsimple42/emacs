@@ -284,16 +284,19 @@
 
 ;;these commands allow inserting of todays date automatically
 (require 'calendar)
-(defun insdate-insert-current-date (&optional omit-day-of-week-p)
-      "Insert today's date using the current locale.
-  With a prefix argument, the date is inserted without the day of
-  the week."
-      (interactive "P*")
-      (insert (calendar-date-string (calendar-current-date) nil
-				    omit-day-of-week-p)))
+;; (defun insdate-insert-current-date (&optional omit-day-of-week-p)
+;;       "Insert today's date using the current locale.
+;;   With a prefix argument, the date is inserted without the day of
+;;   the week."
+;;       (interactive "P*")
+;;       (insert (calendar-date-string (calendar-current-date) nil
+;; 				    omit-day-of-week-p)))
+(defun insdate-insert-current-date ()
+  (interactive)
+        (insert (format-time-string "## %Y-%m-%d-%H-%M-%S \n\n")))
 
-;;bind this to C-x M-d
- (global-set-key "\C-x\M-d" `insdate-insert-current-date)
+;;bind this to C-c i
+ (global-set-key "\C-ci" `insdate-insert-current-date)
 
 
 ;;This makes emacs use uk convention of only one space after full-stop (period) to the snetence jump commands work
@@ -355,6 +358,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bmkp-last-as-first-bookmark-file "/home/mark/Dropbox/notes/EmacsDict/bookmarks")
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
