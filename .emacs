@@ -12,6 +12,7 @@
 ;;smartparens
 ;;deft
 ;;geiser
+;;paredit
 ;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
 
 
@@ -132,13 +133,23 @@
 ;;this enables C-c C-w to duplicate the line and move to the start of it
 (global-set-key "\C-c\C-w" "\C-a\C- \C-n\M-w\C-y\C-p") 
 
-
+;;********* lispy bracket stuff for emlisp and scheme
 
 ;; auto close bracket insertion. New in emacs 24
 (electric-pair-mode 1)
 ;; highlight matching parens too
 (setq show-paren-delay 0)
 (show-paren-mode 1)
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook #'enable-paredit-mode)
+
+;load the handy menu whenever we load paredit
+(require 'paredit-menu)
+
+
+
+
 
 ;;word count mode
 (setq load-path (cons (expand-file-name "~/.emacs.d/lisp") load-path))
@@ -307,7 +318,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-capitalize-mode)
 
 ;;This makes typing two spaces after a word produce a full-stop just like iOS devices do
-;;i had to modify this adding the progn and expand abbrev - beacause otherwise abbrev didn't
+;;I had to modify this adding the progn and expand abbrev - beacause otherwise abbrev didn't
 ;;work on org-mode for some reason
 (defun freaky-space ()
   (interactive)
@@ -321,7 +332,7 @@
 	 (insert " ")))))
 
 (define-key text-mode-map " " 'freaky-space)
-
+        
 
 ;;remap beginning of buffer as M-< doesn't work on Terminus with linode
 ;;however I have found that C-x [ and C-x ] go to start and end of buffer
@@ -358,7 +369,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bmkp-last-as-first-bookmark-file "/home/mark/Dropbox/notes/EmacsDict/bookmarks")
+ '(bmkp-last-as-first-bookmark-file "~/Dropbox/notes/EmacsDict/bookmarks")
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
