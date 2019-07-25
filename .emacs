@@ -29,6 +29,12 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;set up emacs be able to work with encrypted files
+(require 'epa-file)
+(epa-file-enable)
+(setq epa-pinentry-mode 'loopback) ;this allows passphrase to be entered directly in emacs
+(setq epa-file-cache-passphrase-for-symmetric-encryption nil) ;ask for password to decrypt
+
 ;;bookmarks
 ;(require 'bookmark)
 (setq bookmark-default-file "~/Dropbox/notes/EmacsDict/bookmarks")
