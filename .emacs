@@ -19,6 +19,7 @@
 
 ;add to the load path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.d/lisp/bookmark-plus/")
 
 ;; the melpa emacs package archive
 (require 'package)
@@ -31,7 +32,7 @@
 
 ;set up emacs be able to work with encrypted files
 (require 'epa-file)
-(epa-file-enable)
+;(epa-file-enable)
 (setq epa-pinentry-mode 'loopback) ;this allows passphrase to be entered directly in emacs
 (setq epa-file-cache-passphrase-for-symmetric-encryption nil) ;ask for password to decrypt
 
@@ -39,22 +40,22 @@
 ;(require 'bookmark)
 (setq bookmark-default-file "~/Dropbox/notes/EmacsDict/bookmarks")
 
-;;this lot loads the latest version of bookmarks+ from emacs wiki
-(let ((bookmarkplus-dir "~/.emacs.d/lisp/bookmark-plus/")
-      (emacswiki-base "https://www.emacswiki.org/emacs/download/")
-      (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
-  (require 'url)
-  (add-to-list 'load-path bookmarkplus-dir)
-  (make-directory bookmarkplus-dir t)
-  (mapcar (lambda (arg)
-	    (let ((local-file (concat bookmarkplus-dir arg)))
-	      (unless (file-exists-p local-file)
-		(url-copy-file (concat emacswiki-base arg) local-file t))))
-	  bookmark-files)
-  (byte-recompile-directory bookmarkplus-dir 0)
-  (require 'bookmark+))
+;; ;; ;;this lot loads the latest version of bookmarks+ from emacs wiki
+;;  (let ((bookmarkplus-dir "~/.emacs.d/lisp/bookmark-plus/")
+;;        (emacswiki-base "https://www.emacswiki.org/emacs/download/")
+;;        (bookmark-files '("bookmark+.el" "bookmark+-mac.el" "bookmark+-bmu.el" "bookmark+-key.el" "bookmark+-lit.el" "bookmark+-1.el")))
+;;   (require 'url)
+;;   (add-to-list 'load-path bookmarkplus-dir)
+;;   (make-directory bookmarkplus-dir t)
+;;   (mapcar (lambda (arg)
+;; 	    (let ((local-file (concat bookmarkplus-dir arg)))
+;; 	      (unless (file-exists-p local-file)
+;; 		(url-copy-file (concat emacswiki-base arg) local-file t))))
+;; 	  bookmark-files)
+;;   (byte-recompile-directory bookmarkplus-dir 0)
+ (require 'bookmark+)
 
- 
+;;(require 'bookmark+)
 
 
 ;;this puts the last selected bookmark at the top of the list (not sure it works though)
