@@ -17,6 +17,12 @@
 ;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
 
 
+;;start full screen
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;try to set guile as the default scheme
+(setq geiser-default-implementation 'guile)
+
 ;add to the load path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "~/.emacs.d/lisp/bookmark-plus/")
@@ -86,7 +92,7 @@
 
 ;adaptive-wrap-prefix-mode doesnt have a global mode, but it depends upon visual-line-mode which does so; add a hook to enable it whenever the latter is on
 (add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode)
-;(global-visual-line-mode 1)
+(global-visual-line-mode 1)
 ;just load visual line mode in org files only
 (with-eval-after-load 'org
   (setq org-startup-indented t)
@@ -148,9 +154,10 @@
 ;; highlight matching parens too
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook #'enable-paredit-mode)
+;temporarily disable paredit as I'm not getting the hang of it
+;; (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+;; (add-hook 'scheme-mode-hook #'enable-paredit-mode)
+;; (add-hook 'lisp-mode-hook #'enable-paredit-mode)
 
 ;load the handy menu whenever we load paredit
 (require 'paredit-menu)
@@ -377,19 +384,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bmkp-last-as-first-bookmark-file "~/Dropbox/notes/EmacsDict/bookmarks")
+ '(bmkp-last-as-first-bookmark-file "/home/mark/Dropbox/notes/EmacsDict/bookmarks")
+ '(font-use-system-font t)
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil))))
+    (visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil)))
+ '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 158 :width normal)))))
+ '(default ((t (:family "DejaVu Sans" :foundry "PfEd" :slant normal :weight normal :height 158 :width normal)))))
 ;;manually add this
 (require 'evil)
 ;(evil-mode 1)
