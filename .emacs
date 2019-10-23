@@ -15,7 +15,14 @@
 ;;markdown-mode
 ;;paredit
 ;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
+;;haskell-mode
 
+
+;;haskell mode stuff
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-to-list 'completion-ignored-extensions ".hi")
+;;(global-set-key (kbd "C-c C-l") 'inf-haskell-mode)
 
 ;;start full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -391,7 +398,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil)))
+    (haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
