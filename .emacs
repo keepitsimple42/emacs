@@ -131,7 +131,7 @@
 (global-set-key "\C-cd" "\M-x deft")
 (setq deft-use-filename-as-title t)
 (setq deft-directory "~/Dropbox/notes") ;;no need to do the symlink thingy above now
-(setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp" "scm"))
+(setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp" "scm" "hs"))
 (setq deft-default-extension "md")
 ;try to reduce the autosaves in deft (so we don't have huge number of backups)
 (setq deft-auto-save-interval 300.0)
