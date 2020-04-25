@@ -399,7 +399,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil)))
+    (cider haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete ace-window linum-relative rainbow-delimiters org-chef evil)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -628,7 +628,7 @@ picked from random-quote-file."
       (insert (number-to-string (time-to-day-in-year (current-time))))
       (insert "\n\n")
       ;;the number of days left to go this year
-      (insert (number-to-string (org-time-stamp-to-now "2019-12-31")))
+      (insert (number-to-string (org-time-stamp-to-now "2020-12-31")))
       (insert "\n\n")
       ;; the number of days until I am 60
       (insert (number-to-string (org-time-stamp-to-now "2028-01-07")))
@@ -668,6 +668,13 @@ picked from random-quote-file."
 (org-babel-do-load-languages
   'org-babel-load-languages
     '((scheme  . t)))
+
+(setq org-babel-clojure-backend 'cider)
+(require 'cider)
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((clojure  . t)))
 
 
 
