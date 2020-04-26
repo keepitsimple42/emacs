@@ -17,6 +17,11 @@
 ;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
 ;;haskell-mode
 
+(fset 'yes-or-no-p 'y-or-n-p) ; stops having to type 'yes' when y will do
+;; (setq kill-buffer-query-functions
+;;       (remq 'process-kill-buffer-query-function
+;; 	             kill-buffer-query-functions))
+
 
 ;;haskell mode stuff
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -27,6 +32,8 @@
 
 ;;start full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+(setq next-line-add-newlines t) ;this means moving beyond the end of the file adds newlines
 
 ;try to set guile as the default scheme
 (setq geiser-default-implementation 'guile)
