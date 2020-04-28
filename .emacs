@@ -44,7 +44,7 @@
 
 ;;**************work around********
 ;;this fixes the emacs 26 TLS bug
-(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu"))
+(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu")))
 
 
 ;; the melpa emacs package archive
