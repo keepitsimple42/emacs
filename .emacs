@@ -42,6 +42,11 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "~/.emacs.d/lisp/bookmark-plus/")
 
+;;**************work around********
+;;this fixes the emacs 26 TLS bug
+(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu"))
+
+
 ;; the melpa emacs package archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
