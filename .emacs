@@ -63,7 +63,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner srefactor transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode mutt-alias muttrc-mode pod-mode popup session tabbar))
+(setq package-list '(ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner srefactor transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar))
 
 (package-initialize)
 
@@ -616,6 +616,7 @@ picked from random-quote-file."
 
 
 ;;persisting the history between emacs sessions.....awesome!
+(setenv "SYSENV" "work")
 
 (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring last-kbd-macro kmacro-ring shell-command-history))
 (setq kmacro-ring-max 42)
