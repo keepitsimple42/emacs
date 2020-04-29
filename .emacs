@@ -44,8 +44,8 @@
 
 ;;**************work around********
 ;;this fixes the emacs 26 TLS bug
-(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu")))
-
+;(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu")))
+;not needed now I can build 26.3 on the Pi
 
 ;; the melpa emacs package archive
 (require 'package)
