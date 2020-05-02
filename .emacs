@@ -22,6 +22,7 @@
 ;;       (remq 'process-kill-buffer-query-function
 ;; 	             kill-buffer-query-functions))
 
+(global-prettify-symbols-mode 1)
 
 ;;haskell mode stuff
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
