@@ -22,7 +22,11 @@
 ;;       (remq 'process-kill-buffer-query-function
 ;; 	             kill-buffer-query-functions))
 
-(global-prettify-symbols-mode 1)
+(global-prettify-symbols-mode 1) ;makes lambda turn into the symbol
+
+;possible fix for C-SPC in terminus
+(global-set-key (kbd "§") 'set-mark-command)
+
 
 ;;haskell mode stuff
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
