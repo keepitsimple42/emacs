@@ -14,7 +14,7 @@
 ;;geiser
 ;;markdown-mode
 ;;paredit
-;;srefactor (semantic refactoring - pretty print for lisp and c/c++)
+;;srefactor (semantic refactoring - pretty print for lisp and c/c++) removed as it had bugs
 ;;haskell-mode
 
 (fset 'yes-or-no-p 'y-or-n-p) ; stops having to type 'yes' when y will do
@@ -68,7 +68,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner srefactor transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar))
+(setq package-list '(ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar))
 
 (package-initialize)
 
@@ -121,14 +121,14 @@
 
 
 ;;semantic refactoring
-(require 'srefactor)
-(require 'srefactor-lisp)
+;; (require 'srefactor)
+;; (require 'srefactor-lisp)
 
-(semantic-mode 1)
-(global-set-key (kbd "C-c rp") 'srefactor-refactor-at-point)
-(global-set-key (kbd "C-c rs") 'srefactor-lisp-format-sexp)
-(global-set-key (kbd "C-c rd") 'srefactor-lisp-format-defun)
-(global-set-key (kbd "C-c rb") 'srefactor-lisp-format-buffer)
+;; (semantic-mode 1)
+;; (global-set-key (kbd "C-c rp") 'srefactor-refactor-at-point)
+;; (global-set-key (kbd "C-c rs") 'srefactor-lisp-format-sexp)
+;; (global-set-key (kbd "C-c rd") 'srefactor-lisp-format-defun)
+;; (global-set-key (kbd "C-c rb") 'srefactor-lisp-format-buffer)
 
 
 (load-file "~/.emacs.d/lisp/adaptive-wrap.el")
