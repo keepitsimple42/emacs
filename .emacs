@@ -198,14 +198,30 @@
 ;; highlight matching parens too
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-;temporarily disable paredit as I'm not getting the hang of it
-;; (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-;; (add-hook 'scheme-mode-hook #'enable-paredit-mode)
-;; (add-hook 'lisp-mode-hook #'enable-paredit-mode)
-
+; paredit mode
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
 ;load the handy menu whenever we load paredit
 (require 'paredit-menu)
 
+;to make termius work better in paredit mode
+(add-hook 'term-setup-hook
+	  '(lambda ()
+	     (define-key function-key-map "^[^F" [C-M-f])
+	     (define-key function-key-map "^[^B" [C-M-b])
+	     (define-key function-key-map "M-," [C-M-u]) ;think M-<
+	     (define-key function-key-map "M-." [C-M-d]) ;think M->
+	     (define-key function-key-map "^[^p" [C-M-p])
+	     (define-key function-key-map "^[^n" [C-M-n])
+	     (define-key function-key-map "^[[1;5C" [C-right])
+	     (define-key function-key-map "^[[1;5D" [C-left])
+	     (define-key function-key-map "^[b" [C-M-left])
+	     (define-key function-key-map "^[f" [C-M-right])
+
+	     )
+	  )
 
 
 
