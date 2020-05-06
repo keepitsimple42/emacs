@@ -667,29 +667,29 @@ picked from random-quote-file."
 
 ;;*****************Make emacs do some custom things on start up************
 
-(add-hook 'emacs-startup-hook 'my-startup-fcn)
-(defun my-startup-fcn ()
-  "do fancy things"
-  (let ((my-buffer (get-buffer-create "*my-buffer*")))
-    (with-current-buffer my-buffer
-      ;; this is what you customize
-      (insert "Every day is a fresh start\n\n")
-      (insert (calendar-date-string (calendar-current-date)))
-      (insert "\n\n")
-      (insert (format-time-string "%y-%m-%d %H-%M-%S \n\n"))
-      ;;the number of days elapsed this year
-      (insert (number-to-string (time-to-day-in-year (current-time))))
-      (insert "\n\n")
-      ;;the number of days left to go this year
-      (insert (number-to-string (org-time-stamp-to-now "2020-12-31")))
-      (insert "\n\n")
-      ;; the number of days until I am 60
-      (insert (number-to-string (org-time-stamp-to-now "2028-01-07")))
-      (insert "\n\n")
-      (insert (sunrise-sunset))
-      (insert "\n\n")
-      (insert (pick-random-quote)))
-    (switch-to-buffer my-buffer)))
+;; (add-hook 'emacs-startup-hook 'my-startup-fcn)
+;; (defun my-startup-fcn ()
+;;   "do fancy things"
+;;   (let ((my-buffer (get-buffer-create "*my-buffer*")))
+;;     (with-current-buffer my-buffer
+;;       ;; this is what you customize
+;;       (insert "Every day is a fresh start\n\n")
+;;       (insert (calendar-date-string (calendar-current-date)))
+;;       (insert "\n\n")
+;;       (insert (format-time-string "%y-%m-%d %H-%M-%S \n\n"))
+;;       ;;the number of days elapsed this year
+;;       (insert (number-to-string (time-to-day-in-year (current-time))))
+;;       (insert "\n\n")
+;;       ;;the number of days left to go this year
+;;       (insert (number-to-string (org-time-stamp-to-now "2020-12-31")))
+;;       (insert "\n\n")
+;;       ;; the number of days until I am 60
+;;       (insert (number-to-string (org-time-stamp-to-now "2028-01-07")))
+;;       (insert "\n\n")
+;;       (insert (sunrise-sunset))
+;;       (insert "\n\n")
+;;       (insert (pick-random-quote)))
+;;     (switch-to-buffer my-buffer)))
 
 
 
