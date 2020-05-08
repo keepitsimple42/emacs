@@ -217,10 +217,11 @@
 	     (define-key function-key-map "M-." [C-M-d]) ;think M->
 	     (define-key function-key-map "^[^p" [C-M-p])
 	     (define-key function-key-map "^[^n" [C-M-n])
-	     (define-key function-key-map "^[[1;5C" [C-right])
-	     (define-key function-key-map "^[[1;5D" [C-left])
+	     (define-key function-key-map "^[[1;5C" [C-right])  ;;slurp
+	     (define-key function-key-map "^[[1;5D" [C-left])   ;;barf
 	     (define-key function-key-map "^[b" [C-M-left])
 	     (define-key function-key-map "^[f" [C-M-right])
+	    ;; (define-key function-key-map "1" [(kbd  "M-(")])  ;;since shift-M-9 looks like f9
 
 	     )
 	  )
