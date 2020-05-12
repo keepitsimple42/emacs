@@ -201,6 +201,7 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 ; paredit mode
+
 (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook #'enable-paredit-mode)
@@ -208,7 +209,7 @@
 ;load the handy menu whenever we load paredit
 (require 'paredit-menu)
 
-;to make termius work better in paredit mode
+;to make termius work better in paredit mode and other things
 (add-hook 'term-setup-hook
 	  '(lambda ()
 	     (define-key function-key-map "^[^F" [C-M-f])
@@ -221,7 +222,8 @@
 	     (define-key function-key-map "^[[1;5D" [C-left])   ;;barf
 	     (define-key function-key-map "^[b" [C-M-left])
 	     (define-key function-key-map "^[f" [C-M-right])
-	    ;; (define-key function-key-map "1" [(kbd  "M-(")])  ;;since shift-M-9 looks like f9
+	     (define-key function-key-map "^[[20~" [(kbd  "M-(")])  ;;since shift-M-9 looks like f9
+	    
 
 	     )
 	  )
@@ -234,6 +236,11 @@
 (autoload 'word-count-mode "word-count"
           "Minor mode to count words." t nil)
 (global-set-key "\M-=" 'word-count-mode)
+
+;;pretty indentation C-x h to select whole buffer and then
+(global-set-key "\C-\M-z" 'indent-region)
+;(global-set-key (kbd ";") (kbd "<C-u>2;")) - doesn't work
+
 
 ;;a really simple pomodoro timer
 ;; (defun pomodoro ()
