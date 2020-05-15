@@ -1,21 +1,4 @@
-;;Note several of the packages loaded require you to launch emacs and type
-;; M-x package-install <RET>  package-name  <RET> the very first time
-;;I'll try to list these here (and in the comments in this file too)
-;;rainbow-delimiters
-;;linum-relative
-;;evil
-;;auto-complete 
-;;smex
-;;ace-jump
-;;ace-window
-;;multiple-cursors
-;;smartparens
-;;deft
-;;geiser
-;;markdown-mode
-;;paredit
-;;srefactor (semantic refactoring - pretty print for lisp and c/c++) removed as it had bugs
-;;haskell-mode
+;;; updated to autoload any packages that are not alreay loaded
 
 (fset 'yes-or-no-p 'y-or-n-p) ; stops having to type 'yes' when y will do
 ;; (setq kill-buffer-query-functions
@@ -26,6 +9,9 @@
 
 ;possible fix for C-SPC in terminus
 (global-set-key (kbd "§") 'set-mark-command)
+
+;;; to enable thing at point mode
+(require 'thingatpt)
 
 
 ;;haskell mode stuff
@@ -70,7 +56,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect))
+(setq package-list '(ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 (package-initialize)
 
@@ -81,6 +67,10 @@
     (package-install package)))
 
 
+;;; allows us to expand or contract slections as point
+(use-package expand-region)
+(global-set-key (kbd "M-'") 'er/expand-region)
+(global-set-key (kbd "M-\\") 'er/contract-region)
 
 ;set up emacs be able to work with encrypted files
 (require 'epa-file)
@@ -465,7 +455,7 @@
     ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
  '(package-selected-packages
    (quote
-    (cider haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete linum-relative rainbow-delimiters org-chef evil)))
+    (hl-anything thingopt cider haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete linum-relative rainbow-delimiters org-chef evil)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
