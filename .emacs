@@ -223,7 +223,11 @@
 	     (define-key function-key-map "^[b" [C-M-left])
 	     (define-key function-key-map "^[f" [C-M-right])
 	     (define-key function-key-map "^[[20~" [(kbd  "M-(")])  ;;since shift-M-9 looks like f9
-	    
+	     ;; these four don't work - not sure why
+	     (define-key function-key-map "^[b" [M-left]) ;org-mode promote heading 
+	     (define-key function-key-map "^[f" [M-right]) ;org-mode demote heading
+	     (define-key function-key-map "^[R" [M-S-up]) ;org-mode swap with prev subtree
+	     (define-key function-key-map "^[Q" [M-S-down]) ;org-mode swap with next subtree
 
 	     )
 	  )
