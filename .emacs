@@ -754,6 +754,8 @@ picked from random-quote-file."
 (define-key global-map (kbd "C-c j") 'ace-jump-mode) ;because C-c SPC was already defined in org mode
 (define-key global-map (kbd "M-+") 'ace-jump-mode) ;; this is M-TAB on Terminus!
 
+;;; use avy goto char too
+(define-key global-map (kbd "C-c J") 'avy-goto-char)
 
 
 ;;
