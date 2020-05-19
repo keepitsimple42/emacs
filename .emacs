@@ -783,7 +783,9 @@ picked from random-quote-file."
 (use-package auto-complete :config (ac-flyspell-workaround))
 (add-to-list 'ac-modes 'org-mode)
 (add-to-list 'ac-modes 'markdown-mode)
+(add-to-list 'ac-modes 'tj3-mode)
 (add-to-list 'ac-modes 'text-mode)
+
 (ac-config-default)
 (global-auto-complete-mode t)
 
