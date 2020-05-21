@@ -24,7 +24,8 @@
 ;;start full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;;(setq default-frame-alist '((font . "Source Code Pro-18")))
-
+(add-to-list 'default-frame-alist
+                       '(font . "DejaVu Sans Mono-18"))
 
 (setq next-line-add-newlines t) ;this means moving beyond the end of the file adds newlines
 
