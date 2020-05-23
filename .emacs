@@ -51,6 +51,10 @@
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;;; latest org mode
+(require 'package)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+
 ;;get emacs to auto-install any packages it needs that are not already installed
 ;; (unless (package-installed-p 'use-package)
 ;;   (package-refresh-contents)
@@ -58,7 +62,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(setq package-list '(org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 (package-initialize)
 (package-refresh-contents)
@@ -69,9 +73,7 @@
     (package-install package)))
 
 
-;;; latest org mode
-(require 'package)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+
 
 
 ;;; allows us to expand or contract slections as point
@@ -264,9 +266,6 @@
 (add-to-list 'load-path "~/.emacs.d/pomidor/")
 (require 'pomidor)
 
-;; task juggler syntax highlighting
-(load-file "~/.emacs.d/lisp/tj3-mode.el")
-(load-file "~/.emacs.d/lisp/i-ching.el")
 
 
 
@@ -757,8 +756,14 @@ picked from random-quote-file."
 
 
 
+;; task juggler syntax highlighting
+(load-file "~/.emacs.d/lisp/tj3-mode.el")
+(load-file "~/.emacs.d/lisp/i-ching.el")
 
 
+;;******************** org-mode jaskjuggler export ********************
+(require 'ox-taskjuggler)
+(setq org-taskjuggler-target-version 3.7)
 
 ;;***************************************ACE JUMP MODE****************************************
 
