@@ -682,9 +682,9 @@ picked from random-quote-file."
 
 
 ;;set location
-(setq calendar-latitude 51.808311)
-(setq calendar-longitude -3.132150)
-     (setq calendar-location-name "Newport, Gwent")
+(setq calendar-latitude 51.8080555556)
+(setq calendar-longitude -3.13194444445)
+     (setq calendar-location-name "Clydach, Brecon Beacons National Park")
 ;;set local time
 (set-time-zone-rule "GMT-1")
 
