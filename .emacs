@@ -14,6 +14,7 @@
 (require 'thingatpt)
 
 
+
 ;;haskell mode stuff
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -66,6 +67,11 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+
+;;; latest org mode
+(require 'package)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 
 ;;; allows us to expand or contract slections as point
@@ -221,6 +227,9 @@
 	     (define-key function-key-map "^[b" [C-M-left])
 	     (define-key function-key-map "^[f" [C-M-right])
 	     (define-key function-key-map "^[[20~" [(kbd  "M-(")])  ;;since shift-M-9 looks like f9
+	    
+	    ;; (define-key function-key-map "^[\\" [(kbd  "M-\\")]) 
+	     
 	     ;; these four don't work - not sure why
 	     (define-key function-key-map "^[b" [M-left]) ;org-mode promote heading 
 	     (define-key function-key-map "^[f" [M-right]) ;org-mode demote heading
@@ -957,3 +966,5 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
     (delete-whitespace-rectangle (point) end nil)))
 
 (global-set-key (kbd "C-c kw") 'my-delete-leading-whitespace)
+
+(global-set-key (kbd "C-c 1") 'just-one-space)
