@@ -717,7 +717,7 @@ picked from random-quote-file."
 
 
 ;;***************************************************************************
-(setq initial-buffer-choice "my-buffer")
+;;(setq initial-buffer-choice "my-buffer")
 
 
 ;;***************************geiser*****************************************
