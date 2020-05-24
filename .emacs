@@ -312,6 +312,20 @@
 ;;but start with all levels open when we open a file
 ;;(setq org-startup-folded nil)  ;;actually its better to start with the default closed
 
+;; add some bindings so the org table works ok in termius
+(global-set-key (kbd "\C-c m <right>") 'org-table-move-column-right) ;;M-right
+(global-set-key (kbd "\C-c m <left>") 'org-table-move-column-left) ;;M-left
+(global-set-key (kbd "\C-c m <up>") 'org-table-move-row-up) ;;M-up
+(global-set-key (kbd "\C-c m <down>") 'org-table-move-row-down) ;;M-down
+(global-set-key (kbd "\C-c s <left>") 'org-table-delete-column) ;;M-S-left
+(global-set-key (kbd "\C-c s <right>") 'org-table-insert-column) ;;M-S-right
+(global-set-key (kbd "\C-c s <up>") 'org-table-kill-row) ;;M-S-up
+(global-set-key (kbd "\C-c s <down>") 'org-table-insert-row) ;;M-S-down
+
+
+
+
+
 ;;org agenda keys from p3 of org-mode manual
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
