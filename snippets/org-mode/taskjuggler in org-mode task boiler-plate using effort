@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: taskjuggler in org-mode task boiler-plate using effort
+# key: -te
+# --
+:PROPERTIES:
+:task_id: $1
+:effort: $2
+:depends: $3
+:allocate: $4
+:END:
+$0

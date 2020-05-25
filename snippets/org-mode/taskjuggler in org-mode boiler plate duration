@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: taskjuggler in org-mode boiler plate duration
+# key: -td
+# --
+:PROPERTIES:
+:task_id: $1
+:depends: $2
+:duration: $3
+:END:
+$0
