@@ -485,7 +485,7 @@
  '(font-use-system-font t)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/org-notes.org" "~/Dropbox/notes/personallist.org" "~/Dropbox/notes/worklist.org")))
+    ("~/Dropbox/notes/")))
  '(package-selected-packages
    (quote
     (hl-anything thingopt cider haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete linum-relative rainbow-delimiters org-chef evil)))
