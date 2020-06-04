@@ -62,7 +62,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(setq package-list '(org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 (package-initialize)
 (package-refresh-contents)
@@ -76,6 +76,8 @@
 ;;add org-mode export backends
 (require 'ox-md)
 (require 'ox-odt)
+;;add org bullets
+(org-bullets-mode)
 
 
 ;;spaceline with spacemace theme
