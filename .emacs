@@ -62,7 +62,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(powerline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(setq package-list '(spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 (package-initialize)
 (package-refresh-contents)
@@ -78,9 +78,14 @@
 (require 'ox-odt)
 
 
-;;powerline
-(require 'powerline)
-(powerline-default-theme)
+;;spaceline with spacemace theme
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+  (setq powerline-default-separator (quote arrow))
+  (spaceline-spacemacs-theme))
+
 
 ;;; allows us to expand or contract slections as point
 (use-package expand-region)
@@ -488,6 +493,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bmkp-last-as-first-bookmark-file "/home/mark/Dropbox/notes/EmacsDict/bookmarks")
+ '(custom-enabled-themes (quote (spacemacs-dark)))
+ '(custom-safe-themes
+   (quote
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(flyspell-abbrev-p t)
+ '(flyspell-issue-message-flag nil)
+ '(flyspell-issue-welcome-flag nil)
+ '(flyspell-mode 1 t)
  '(font-use-system-font t)
  '(org-agenda-files (quote ("~/Dropbox/notes/")))
  '(package-selected-packages
