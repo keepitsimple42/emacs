@@ -73,6 +73,9 @@
     (package-install package)))
 
 
+;;add org-mode export backends
+(require 'ox-md)
+(require 'ox-odt)
 
 
 
