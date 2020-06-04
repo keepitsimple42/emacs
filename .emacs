@@ -77,7 +77,8 @@
 (require 'ox-md)
 (require 'ox-odt)
 ;;add org bullets
-(org-bullets-mode)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
 
 
 ;;spaceline with spacemace theme
