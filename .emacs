@@ -79,6 +79,19 @@
 ;;add org bullets
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+;;this puts helpful error messages relating tothe org-mode sbe functionin the *MESSAGES* buffer
+(defadvice sbe (around get-err-msg activate)
+  "Issue messages at errors."
+  (condition-case err
+      (progn
+    ad-do-it)
+    ((error debug)
+     (message "Error in sbe: %S" err)
+     (signal (car err) (cdr err)))))
+
+(defadvice sbe (before escape-args activate)
+  "Apply prin1 to argument values."
+  (mapc '(lambda (var) (setcdr var (list (prin1-to-string (cadr var))))) variables))
 
 
 ;;spaceline with spacemace theme
@@ -93,6 +106,7 @@
 ;;; allows us to expand or contract slections as point
 (use-package expand-region)
 (global-set-key (kbd "M-'") 'er/expand-region)
+
 (global-set-key (kbd "M-\\") 'er/contract-region)
 
 ;;; projectile
@@ -163,7 +177,8 @@
 ;just load visual line mode in org files only
 (with-eval-after-load 'org
   (setq org-startup-indented t)
-  (add-hook 'org-mode-hook #'visual-line-mode))
+  ;;(add-hook 'org-mode-hook #'visual-line-mode)  ;;commented out for now because it wrecks big org tables
+  )
 
 
 ;;fly spell ENABLE

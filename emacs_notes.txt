@@ -78,7 +78,7 @@ DEL or Backspace deletes character before the cursor
 C-d deletes character after cursor
 M-DEL deletes the word before the cursor. 
 M-d deletes the word after the cursor
-C-k kills from cursor to end of line
+C-k kills from cursogr to end of line
 M-k kills to the end of the current sentence
 C-SPACE sets the 'mark' at the cursor, the next move commands highlight text
 'double-s/section' (on the ± key on ipad) has been configured to set the mark
@@ -86,7 +86,7 @@ M-= tells you how many chars, words etc in region
 C-x C-x interchanges mark and point (point is cursor location)
 C-w kills (cuts) highlighted text
 C-y 'yanks' (pastes) killed text
-M-y cycles pasted text through paste buffer of previously killed text in the kill ring M-x browse-kill-ring opens a buffer where you can look through your past cutsxs
+M-y cycles pasted text through paste buffer of previously killed text in the kill ring M-x browse-kill-ring opens a buffer where you can look through your past cuts or copy 
 M-w copy text
 C-x C-l converts highlighted text to lower case
 C-x C-u converts highlighted text to lower case
@@ -319,7 +319,7 @@ emacs -batch -l dunnet in terminal starts an interactive text adventure
 
 
 Workflows and tasks
-=================
+-------------------
 
 Duplicate this line (use EVIL) 
 M-u (enter evil mode) 
@@ -334,6 +334,10 @@ Copy 3 lines above to here
 M-u
 3 yk (k is motion command)
 p
+
+
+
+
 
 Recipe: M-u 3 yy p
 
@@ -580,9 +584,19 @@ Awesome comments!
 Just type M-; this will open a comment in whatever language you are using including languages like c with open and close delimiters it even works in markdown and html giving correct results
 
 Expand region
+-------------
+
 M-' logically expand selection around point taking account of language syntax etc
 M-\ undo above
 allows quick selection of words, functions, sentences etc
+
+****NOTE****
+
+there is a bug related to this in the latest org-mode that stops expand-region working
+the solutionis to go to ~/.emacs.d/elpa/
+find the expand region directory (on mine it was expand-region-20200304.1839) and delete it
+rm -r expand-region-20200304.1839
+restart emacs and it re-installed this and it works in org-mode now yay!
 
 org-mode code
 type <s and TAB to produce a code block!
