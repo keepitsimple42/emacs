@@ -49,7 +49,8 @@
 
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(package-initialize)
+
+;;(package-initialize)
 
 ;;; latest org mode
 (require 'package)
@@ -62,10 +63,10 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree use-package bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(setq package-list '(use-package org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
-(package-initialize)
-(package-refresh-contents)
+;;(package-initialize)
+;;(package-refresh-contents)
 (unless package-archive-contents (package-refresh-contents))
 
 (dolist (package package-list)
@@ -82,6 +83,11 @@
 ;;enable org-table-sticky-header-mode
 (add-hook 'org-mode-hook 'org-table-sticky-header-mode)
 
+;;turn on hl-line-mode automatically in org-mode as I'm doing a lot of work on wide tables
+(add-hook 'org-mode-hook 'hl-line-mode)
+;;(add-hook 'org-mode-hook '(visual-line-mode 0)) ;;and turn off visual line mode 'cos it messes up big tables ***BUT THIS Doesn'T WORK turn off manually for now***
+
+
 ;;this puts helpful error messages relating tothe org-mode sbe functionin the *MESSAGES* buffer
 (defadvice sbe (around get-err-msg activate)
   "Issue messages at errors."
@@ -97,17 +103,46 @@
   (mapc '(lambda (var) (setcdr var (list (prin1-to-string (cadr var))))) variables))
 
 
+;;spacemacs theme
+(use-package spacemacs-theme
+  :defer t
+  :init (load-theme 'spacemacs-dark t))
+
+
 ;;spaceline with spacemace theme
 (use-package spaceline
   :ensure t
   :config
   (require 'spaceline-config)
-  (setq powerline-default-separator (quote arrow))
+  (setq powerline-default-separator 'arrow)
   (spaceline-spacemacs-theme))
+
+;; (use-package spaceline :ensure t
+;;   :config
+;;   (use-package spaceline-config
+;;     :config
+;;     (spaceline-toggle-minor-modes-off)
+;;     (spaceline-toggle-buffer-encoding-off)
+;;     (spaceline-toggle-buffer-encoding-abbrev-off)
+;;     (setq powerline-default-separator 'rounded)
+;;     (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+;;     (spaceline-define-segment line-column
+;;       "The current line and column numbers."
+;;       "l:%l c:%2c")
+;;     (spaceline-define-segment time
+;;       "The current time."
+;;       (format-time-string "%H:%M"))
+;;     (spaceline-define-segment date
+;;       "The current date."
+;;       (format-time-string "%h %d"))
+;;     (spaceline-toggle-time-on)
+;;     (spaceline-emacs-theme 'date 'time))
+
+
 
 
 ;;; allows us to expand or contract slections as point
-(use-package expand-region)
+  (use-package expand-region)
 (global-set-key (kbd "M-'") 'er/expand-region)
 
 (global-set-key (kbd "M-\\") 'er/contract-region)
