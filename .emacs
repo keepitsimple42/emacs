@@ -260,7 +260,7 @@
 (setq deft-use-filename-as-title t)
 (setq deft-directory "~/Dropbox/notes") ;;no need to do the symlink thingy above now
 (setq deft-extensions '("org" "txt" "tex" "md" "markdown" "py" "el" "c" "tjp" "scm" "hs"))
-(setq deft-default-extension "md")
+(setq deft-default-extension "org")
 ;try to reduce the autosaves in deft (so we don't have huge number of backups)
 (setq deft-auto-save-interval 300.0)
 
@@ -565,7 +565,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(bmkp-last-as-first-bookmark-file "/home/mark/Dropbox/notes/EmacsDict/bookmarks")
+ '(bmkp-last-as-first-bookmark-file "~/Dropbox/notes/EmacsDict/bookmarks")
  '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
