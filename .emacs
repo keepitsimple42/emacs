@@ -820,6 +820,8 @@ picked from random-quote-file."
 
 ;;*****************Make emacs do some custom things on start up************
 
+(find-file "~/Dropbox/notes/home.org") 
+
 (add-hook 'emacs-startup-hook 'my-startup-fcn)
 (defun my-startup-fcn ()
   "do fancy things"
