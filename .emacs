@@ -63,7 +63,7 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(use-package  org-roam orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(setq package-list '(use-package  org-roam org-journal orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 ;;(package-initialize)
 ;;(package-refresh-contents)
@@ -86,6 +86,13 @@
 ;;turn on hl-line-mode automatically in org-mode as I'm doing a lot of work on wide tables
 (add-hook 'org-mode-hook 'hl-line-mode)
 ;;(add-hook 'org-mode-hook '(visual-line-mode 0)) ;;and turn off visual line mode 'cos it messes up big tables ***BUT THIS Doesn'T WORK turn off manually for now***
+
+;;make org journal use my notes directory
+(setq org-journal-dir "~/Dropbox/notes/")
+(setq org-journal-date-format "%A, %d %B %Y")
+(setq org-journal-file-format "%Y%m%d.org")
+(setq org-journal-file-type 'weekly)
+(require 'org-journal)
 
 ;;basic org-roam config
 (use-package org-roam
