@@ -93,6 +93,8 @@
 (setq org-journal-file-format "%Y%m%d.org")
 (setq org-journal-file-type 'weekly)
 (require 'org-journal)
+(global-set-key (kbd "C-c m j") 'org-journal-new-entry)
+(global-set-key (kbd "C-c m s") 'org-journal-search)
 
 ;;basic org-roam config
 (use-package org-roam
