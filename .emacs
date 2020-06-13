@@ -422,6 +422,8 @@
 (global-set-key (kbd "\C-c s <down>") 'org-table-insert-row) ;;M-S-down
 
 
+;;this makes org-mode note the time whe a todo became done
+(setq org-log-done 'time)
 
 
 
