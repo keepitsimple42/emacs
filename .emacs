@@ -63,7 +63,9 @@
 
 ;; (use-package ace-jump-mode)
 
-(setq package-list '(use-package  org-roam org-journal orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(package-refresh-contents)
+
+(setq package-list '(use-package  org-roam slime org-journal orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 ;;(package-initialize)
 ;;(package-refresh-contents)
@@ -162,6 +164,11 @@
 ;;     (spaceline-toggle-time-on)
 ;;     (spaceline-emacs-theme 'date 'time))
 
+
+;;common lisp
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "/usr/bin/sbcl")
 
 
 
@@ -605,7 +612,7 @@
  '(org-roam-directory "~/Dropbox/notes")
  '(package-selected-packages
    (quote
-    (sqlite hl-anything thingopt cider haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete linum-relative rainbow-delimiters org-chef evil)))
+    (slime sqlite hl-anything thingopt cider haskell-mode visual-fill writeroom-mode srefactor geiser adaptive-wrap deft hydra smartparens pomidor magit multiple-cursors horoscope smex auto-complete linum-relative rainbow-delimiters org-chef evil)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(show-paren-mode t))
 (custom-set-faces
@@ -887,6 +894,10 @@ picked from random-quote-file."
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((clojure  . t)))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((lisp . t)))
 
 
 
