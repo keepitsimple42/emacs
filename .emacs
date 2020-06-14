@@ -307,6 +307,9 @@
 (show-paren-mode 1)
 
 ;;lispy-mode
+(add-hook 'nrepl-repl-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'slime-repl-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
 (add-hook 'lisp-interaction-mode-hook (lambda () (lispy-mode 1)))
 (add-hook 'lisp-mode-hook (lambda () (lispy-mode 1)))
