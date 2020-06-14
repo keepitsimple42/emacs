@@ -65,7 +65,7 @@
 
 (package-refresh-contents)
 
-(setq package-list '(use-package  org-roam slime org-journal orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
+(setq package-list '(use-package  org-roam lispy slime org-journal orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 ;;(package-initialize)
 ;;(package-refresh-contents)
@@ -305,14 +305,32 @@
 ;; highlight matching parens too
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-; paredit mode
 
-(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'clojure-mode-hook #'enable-paredit-mode)
-;load the handy menu whenever we load paredit
-(require 'paredit-menu)
+;;lispy-mode
+(add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'lisp-interaction-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'lisp-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'scheme-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'slime-mode-hook (lambda () (lispy-mode 1)))
+(add-hook 'cider-mode-hook (lambda () (lispy-mode 1)))
+
+
+
+;;disable for now while i try out lispy-mode instead
+;; ; paredit mode
+;; (autoload 'paredit-mode "paredit"
+;;       "Minor mode for pseudo-structurally editing Lisp code." t)
+;; (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+;; (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+;; (add-hook 'scheme-mode-hook #'enable-paredit-mode)
+;; (add-hook 'lisp-mode-hook #'enable-paredit-mode)
+;; (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+;; (add-hook 'slime-mode-hook #'enable-paredit-mode)
+;; (add-hook 'cider-mode-hook #'enable-paredit-mode)
+
+;; ;load the handy menu whenever we load paredit
+;; (require 'paredit-menu)
 
 ;to make termius work better in paredit mode and other things
 (add-hook 'term-setup-hook
