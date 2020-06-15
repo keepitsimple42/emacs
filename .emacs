@@ -1,5 +1,8 @@
 ;;; updated to autoload any packages that are not alreay loaded
 
+;; set this to nil to speed up load time and to t to install missing packages
+(setq *do-installs* nil)
+
 (fset 'yes-or-no-p 'y-or-n-p) ; stops having to type 'yes' when y will do
 ;; (setq kill-buffer-query-functions
 ;;       (remq 'process-kill-buffer-query-function
@@ -45,12 +48,13 @@
 ;; the melpa emacs package archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+
+;; (package-initialize)
 
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
-(package-initialize)
+ (package-initialize)
 
 ;;; latest org mode
 (require 'package)
@@ -63,17 +67,17 @@
 
 ;; (use-package ace-jump-mode)
 
-(package-refresh-contents)
+(if *do-installs* (package-refresh-contents))
 
 (setq package-list '(use-package  org-roam lispy slime org-journal orgtbl-aggregate org-table-sticky-header org-bullets spacemacs-theme spaceline yasnippet yasnippet-snippets org-plus-contrib projectile flx-ido ace-window auto-complete avy cider clojure-mode deft evil geiser goto-chg haskell-mode horoscope hydra linum-relative lv magit git-commit multiple-cursors org-chef paredit parseedn parseclj a pkg-info epl pomidor alert log4e gntp queue rainbow-delimiters sesman smartparens smex spinner transient dash undo-tree  bind-key with-editor apache-mode bar-cursor bm boxquote browse-kill-ring csv-mode diminish eproject folding graphviz-dot-mode helm helm-core async htmlize initsplit markdown-mode popup session tabbar json-mode edit-indirect expand-region))
 
 ;;(package-initialize)
 ;;(package-refresh-contents)
-(unless package-archive-contents (package-refresh-contents))
+(if *do-installs* (unless package-archive-contents (package-refresh-contents)))
 
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(if *do-installs* (dolist (package package-list)
+		    (unless (package-installed-p package)
+		      (package-install package))))
 
 
 ;;add org-mode export backends
