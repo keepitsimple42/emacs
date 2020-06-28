@@ -1,0 +1,614 @@
+#+TITLE: emacs notes
+* These are my notes on using the emacs editor
+
+to get some useful emacs packages easily
+sudo apt-get install emacs-goodies.el
+* Getting help
+
+C-h k will give help on a key or key combo
+C-h a <topics> searches for help on commands that match <topics>
+C-h i d m emacs <RET> topic <RET> searches the emacs manual index for topic
+C-h i d m emacs <RET> topic <RET> as above, but searches the manual itself
+* Moving around
+
+C-p move up one line
+C-n move down one line
+C-f move forward one character
+C-b move back one character
+
+M-f move forward one word
+M-b move back one word
+M-a move to the start of a sentence
+M-e move to the end of a sentence
+
+C-e move to end of line
+C-a move to start of line
+
+M-{ move to start of paragraph
+M-} move to end of paragraph
+
+C-v move down one screenful
+M-v move up one screenful
+C-M-v move the other window up one screenful
+C-M-V move the other window down (but doesnt work on ipad linode)
+C-l centre view on cursor
+
+M-< move to start of buffer  (but doesnt seem to work on linode)
+M-> move to end of buffer    ( ditto )
+C-x ] move to end of buffer (works on linode)
+C-x [ move to start of buffer (works on linode)
+
+
+M-g g read line number and jump to that goto line number
+M-g M-g does the same as above and is eaier to type!
+
+M-g TAB read a number and move to that column in the current line
+M-x linum-mode - show line numbers in buffers
+
+Invert (reverse) commands M-- (C-- should also work, but not on Linode ipad apparently)
+e.g. M-- C-k deletes from cursor to the start of the line rather than the end
+this works, but not in paredit mode
+* Prefix command
+
+C-u followed by number and command repeats the command
+C-u 8 C-n moves down 8 lines
+C-u 25 - prints 25 '-'
+M-number command also works so M-25 - also works
+ESC 25 - also works
+C-u without a numeric argument defaults to 4 repeats
+C-u C-u therefore repeats a command 16 times!
+* Cancelling a command
+
+C-g cancels a command part way through
+* Deleting etc
+
+DEL or Backspace deletes character before the cursor
+C-d deletes character after cursor
+M-DEL deletes the word before the cursor. 
+M-d deletes the word after the cursor
+C-k kills from cursogr to end of line
+M-k kills to the end of the current sentence
+C-SPACE sets the 'mark' at the cursor, the next move commands highlight text
+'double-s/section' (on the ± key on ipad) has been configured to set the mark
+M-= tells you how many chars, words etc in region
+C-x C-x interchanges mark and point (point is cursor location)
+C-w kills (cuts) highlighted text
+C-y 'yanks' (pastes) killed text
+M-y cycles pasted text through paste buffer of previously killed text in the kill ring M-x browse-kill-ring opens a buffer where you can look through your past cuts or copy 
+M-w copy text
+C-x C-l converts highlighted text to lower case
+C-x C-u converts highlighted text to lower case
+M-z char deletes from here to the next occurrence of character char (zap to point!)
+M-\ deletes all whitespace around the cursor (point) 
+C-x C-o deletes excess vertical blank lines leaving just one empty line 
+* Undo repeat and redo
+
+
+C-/ undo (supposedly, but doesnt work on linode)
+C-x u is also undo
+C-x z repeats the last command, then pressing z repeats it again
+* Opening and saving files
+
+
+C-x C-f 'finds' a file and opens it or creates a new one if it doesnt exist
+C-x C-s saves the current buffer
+C-x C-w saves to a new file name 'save as'
+C-x C-c quits emacs
+* Buffers
+
+C-x C-b lists all buffers in separate window
+C-x b switches to a named buffer (tab autocompletion works here) - note you can create a new named buffer (which won't be associated with a file yet)
+C-x k kills the current buffer
+C-c n (set up in my .emacs) starts a new buffer not associated with a file (yet) - note buffers without files associated don't autosave. 
+HOWEVER - I now think it is a better idea just to do C-x C-f and type a name to create a new buffer associated with a file (if necessary with an extra C-f to turm off IDO mode) - this is def to be preferred
+* Windows and Frames
+
+C-x 0 hides the current buffer
+C-x 1 maximises the current buffer
+C-x 2 splits the current buffer horizontally
+C-x 3 splits the current buffer vertically
+C-x } make window wider
+C-x { make window narrower
+
+C-x o switches through the 'other' buffers
+* Searching
+
+C-s searches in the current file (repeat to go to next occurrence)
+C-r searches in reverse direction (repeat to go to previous occurrence)
+M-s w incremental whole word search
+C-s C-w starts a search and copies the word after point to be search string
+C-s C-y uses the current kill ring entry as the search string
+M-x grep RET <pattern> * to search all files
+M-x rgrep (recursive grep) searches a directory and subdirectories for all files containing pattern
+M-x lgrep (local grep) as above, but just current directory
+M-x replace-string does search and replace
+M-% (M-S-5) or linode C-[ S-5 starts search and replace
+
+M-x occur opens up a new buffer listing occurences of the regex e.g. M-x occur RET def will find all the functions in a python file
+M-s h l - highlights all lines matching regex 
+
+M-x M-p scrolls back through mini-buffer history
+M-x M-n scrolls forward through history
+* Regular expression searching
+
+M-C-s regexp search
+* Recovering files
+
+M-x recover-file
+
+* Keyboard macros
+
+F3 start defining macro
+F4 stop
+C-x ( start defining a macro
+C-x ) stop defining a macro
+C-x e execute macro
+M-x name-last-kbd-macro my-macro give the macro a name 'my-macro'
+M-x my-macro runs a named macro
+C-u 0 C-x e runs the macro until it hits the end of the file
+
+* Completion
+
+M-TAB - need to figure this out!
+
+* Suspend gotcha!
+
+C-z suspends emacs! if working on a terminal the way to get emacs back is to type fg or fg %emacs (just fg worked on ubuntu linode)
+
+* Evil Mode
+
+[[file:vim_notes.org][See vim notes]]
+
+Loading this:
+Put the following in .emacs file:
+
+;;evil mode                                                                                              
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+
+
+Then type this at emacs prompt:
+                                                                                                  
+M-x package-refresh-contents                                                                         
+M-x package-install RET evil 
+
+Then add this to .emacs file:
+                                                                                      
+(require 'evil)
+(evil-mode 1)
+
+
+When this is enabled from .emacs file it will boot in this mode and be like vim
+C-z toggles vim behaviour on and off (but may suspend emacs on terminal fg RET to restart)
+
+I've since customised this to use M-u to go between emacs mode and vim normal mode as it was a pain
+entering org-mode docs in vim-mode
+
+
+
+* Shell
+
+M-x shell starts a shell
+
+M-p and M-n move back and forward through the command history
+C-c C-l lists all the commands you've typed before
+
+Shell history:
+when using emacs shell access shell history through S-C-<UP>
+or on termius use M-p (and M-n)
+
+
+#Run a shell command and insert result into buffer at point
+C-u M-! <command>
+
+* Gollum
+
+Comes bundled with Debian
+sudo apt install ruby-gollum-lib
+
+Worked on Pi
+
+To start gollum --mathjax
+
+* Org-Mode
+
+see separate notes on org-mode in [[file:org-mode_notes.org][my org notes]]
+
+Export to markdown file : C-c C-e m m
+
+
+C-c C-f move forward at same level of tree
+C-c C-b move backward at same level of tree
+C-c c-u move to parent heading
+C-c C-j org-goto
+
+These commands i have remapped in my .emacs so they work with Termius
+
+M-n swap branch with one below
+M-p swap branch with one above
+M-> (actually M-.) indent branch to lower level
+M-< (actually M-,) outdent branch to higher level
+M-] start new branch at this level
+
+* Comment out a region
+
+Select a region then use M-; to comment it (prompts for comment unless it 'knows' from the language!!)
+use M-; a second time to uncomment
+
+* Indent a region
+
+C-c > indent highlighted region
+C-c < outdent
+
+* Running python
+
+C-c C-p starts up the *python* run-time buffer - only need to do this once per session (unless you kill it)
+C-u C-c C-c sends current buffer to be executed in *python* buffer window
+
+* Editing Binary Files
+
+M-x hexl-find-files will open the selected file in hex mode
+M-x hexl-mode translates an existing buffer into hex
+
+* Ace-jump-mode
+
+
+C-c SPC followed by first letter of word on current screen to jump to
+M-TAB (works on Termius as it produces M-+ so I bound it to that!)
+C-c j also works on Termius
+
+Also avy bound to C-c J jumps to any individual character
+
+* Rectangles
+
+To specify - set mark at TL corner and point and BR corner
+
+C-x r k (kills text)
+C-x r o inserts blank space
+C-x r N inster line numbers
+C-x r x clear the rectangle
+
+* Misc
+M-x eval-buffer reloads current buffer - so e.g. When editing .emacs don't need to keep restarting emacs to check it
+M-x zone (freak out)
+M-x lunar-phases
+M-x horoscope (download via M-x package-install RET horoscope)
+
+emacs -batch -l dunnet in terminal starts an interactive text adventure
+
+* Workflows and tasks
+
+Duplicate this line (use EVIL) 
+M-u (enter evil mode) 
+yy (vim copy line)
+p paste
+
+recipe: M-u yy p
+
+OR C-c C-w (I set this up in my .emacs)
+
+Copy 3 lines above to here
+M-u
+3 yk (k is motion command)
+p
+
+
+
+
+
+Recipe: M-u 3 yy p
+
+Copy lines 7-5 lines above us - but dont think relative lines work in EVIL mode - need to fix
+M-u 
+:-2,+3y
+
+IDO Mode
+
+When trying to create a new file IDO mode can be troublesome - just type
+C-f to turn off the IDO mode cleverness/fanciness
+
+* Counting words
+
+I have a plugin enabled - press M-= at start of file and then the mode line shows:
+chars/words/non-empty lines
+
+* Deft
+
+This is a notational velocity-like plugin
+
+Launch using C-c d (defined in .emacs)
+create a new file using C-c C-n (default extension defined in .emacs)
+C-c C-q quits Deft
+C-c C-r renames the file (cursor needs to be on the filename)
+C-c C-d deletes the file
+
+* Defining Abbrevs
+
+Type the word you want to use as expansion, and then type C-x a g and the abbreviation for it.
+Example:
+
+... T h e C-x a g t e h RET
+
+Unfortunately, if you wanted to abbreviate Read The Fine Manual with RTFM, you couldn’t just type C-x a g after “Read the Fine Manual”. Emacs would ask you for an abbreviation for Manual. A simple solution is to use a numeric prefix. Note how many words you want to be part of the expansion, and then use C-u 4 C-x a g after “Read the Fine Manual” – four words.
+
+* Differencing two files
+
+Type M-x ediff
+
+It prompts to load file A and file B and puts them one above the other
+? Turns the help on and off
+n,p go to next,previous diff
+a copies a into b
+b copies b into a
+rx restores buffer x to its previous state
+! Recomputes differences
+
+* Dired
+
+
+Viewing directories
+
+M-x dired opens the directory browser
+
+Whilst in dired if you type 's' it toggles between alphabetical and date sorting - date sorting is useful for reviewing backup versions of files. 
+
+If you type d it marks file for deletion (u undoes this)
+then type x to be prompted to actually delete the files
+c and r mark files for copying/renaming
+to make a read only dired buffer writeable C-x C-q
+
+* Backups
+
+
+I have configured per-save and per-session backups. Using dired (with s) these ca be sorted - then use M-x occur to find all the versions of a file - this can be opened by clicking on the file in dired or via M-x ediff.
+
+* Bookmarks
+
+
+I made a file in ~/Dropbox/notes/EmacsDict/bookmarks to keep them synced
+
+C-x r m make a Bookmark
+C-x r l list the Bookmarks
+C-x r b jump to Bookmarks
+M-x bookmark-delete (to delete by name)
+
+** Bookmarks+
+
+
+When in the list - use 's' to sort by last access time (most frequent at top)
+
+* GPG encryption
+
+
+Emacs will encrypt files with the .gpg extension
+to make it always ask for the passphrase (not cache it) I had to put a line in my .emacs (see comments there) and also I had to create the file:
+
+~/.gnupg/gpg-agent.conf
+
+And put the line
+
+default-cache-ttl 0
+
+In there - I also had to reboot to make this take effect. I also had to do this on ubuntu (without this you could never reopen a file if you got the password wrong because it cached the wrong one!)
+
+* Spelling Check
+
+I use fly-spell, but through hydra using C-c h s and then choose c for correction, i to add to the dictionary.
+
+* Tramp to edit remote Files
+
+C-x d (C-f to turn off ido) /ssh:pi@192.168.0.19:/home/pi (as an example)
+this takes you into the directory structure - you can search with C-s and jump into files and directories etc
+
+A further awesome thing is it seems like the backups get saved in the same backup folders as the local ones - and they contain a reference to their remote location
+this is really good. 
+
+Also when there you can M-x shell (although you need to be in /bin/bash for that to work - then tab autocompletion works)
+
+
+To send C-c to terminate a shell process use C-c C-c
+
+* Compilation
+
+In addition to the different modes for various languages when you do:
+M-x compile
+it checks the first line of the file for a compilation command (actually only when the file is loaded)
+
+So you can have
+
+C code
+
+/* -*- compile-command: "gcc combinator.c && ./a.out && rm a.out" -*- */
+
+Haskell
+
+{- -*- compile-command: "ghc -O2  problem74.hs && ./problem74 +RTS -s && rm problem74 && rm problem74.o && rm problem74.hi && rm problem74.s"  -*-
+ -}
+
+* Emacs menu bar
+
+Accessed through F10 or M-x menu-bar-open
+In termius Shift-M 0-9 are the function keys and S-M-0 launches the menu bar, arrows to navigate
+
+* Removing redundant empty whitespace lines
+
+C-x C-o removes blocks of empty lines (whitespace) and leaves only one
+M-\ deletes all whitespace around the cursor (point) - doesn't work in termius
+C-c 1 remove excess whitespace bound to just-one-space (works in termius) just leaves one space on a line
+C-c kw kills whitespace at the start of lines (but you need to be at the start of a line for it to work)
+
+* Calculator
+
+C-x * c invokes the Calculator
+M-x calc works in general
+an RPN Calculator
+
+p sets the precision
+P is pi
+! Is factorial
+S sin
+C cosine
+d r 16 sets hexadecimal (or any base up to 36)
+a:b represents a fraction
+n negates a number like ±
+& is reciprocal
+F is floor
+R round
+L natural logarithm
+E exp
+4 2 kc computes binomial coefficient choose 2 from 4
+k f gives prime factorisation
+k n gives the next prime number after the number on stack
+k p tests for primality (exact for <8000000 probabilistic otherwise, but repeating k p improves)
+<del> backspace drops the last entry on the stack
+
+
+C-x * y takes the last thing in the calculator stack and pastes it at point
+
+* Getting emacs to auto load any packages not already installed
+
+
+Attempt to make .emacs more portable!
+
+C-h v package-activated-list will print out the value of this which is a list of activated packages. 
+Then there's some code in .emacs to auto install any that need to be
+
+* Making emacs work with Termius
+
+Many keys chords get mangled by termius - the recipe to fix is:
+in a terminal type cat RET and then the key chord - it will print what get's through, so for Example
+
+M-right is turned into 
+^]f
+
+So we can then put this into .emacs
+
+(add-hook 'term-setup-hook
+ '(lambda ()
+ (define-key function-key-map "^]f" [M-right])"]")))
+ 
+
+
+To launch emacs without a gui type emacs -nw 
+
+In the manual it says increase the font size C-x C-+
+works on laptop and Pi, but not in termius (obviously)
+
+* Projectile
+
+Allows smart opening of files within a project (which it knows from git, lein etc)
+C-c p f find file in project (C-c p is projectile leader key)
+C-c p p will switch to another project that its seen before
+C-c p F displays list of known projects
+C-c p s g does a grep in the current project
+
+* Really cool things
+
+
+C-x h (marks the whole buffer) and then...
+C-M-\ auto-indents everything nicely - but fails on termius
+C-M-z mapped to above in .emacs - works on termius
+
+
+Awesome comments!
+Just type M-; this will open a comment in whatever language you are using including languages like c with open and close delimiters it even works in markdown and html giving correct results
+
+Expand region
+-------------
+
+M-' logically expand selection around point taking account of language syntax etc
+M-\ undo above
+allows quick selection of words, functions, sentences etc
+
+****NOTE****
+
+there is a bug related to this in the latest org-mode that stops expand-region working
+the solutionis to go to ~/.emacs.d/elpa/
+find the expand region directory (on mine it was expand-region-20200304.1839) and delete it
+rm -r expand-region-20200304.1839
+restart emacs and it re-installed this and it works in org-mode now yay!
+
+org-mode code
+type <s and TAB to produce a code block!
+
+
+M-x hl-line-mode highlights the current line which can be quite useful 
+
+M-x replace-string is a cool search and replace
+
+* YASnippet
+
+avoid typing boiler-plate over and over!
+
+Type snippet key and press <TAB> to expand it. Further tabs take you to each relevant field in turn to enter data
+M-x yas-describe-tables lists all snippets available in the current mode
+
+Writing a new snippet:
+M-x yas-new-snippet opens a new buffer to define a snippet
+C-c C-c saves the snippet
+
+
+* Paredit Mode
+
+Not using this now I have lispy!
+
+* Lispy Mode
+
+** a better version of paredit - using this now
+
+** Activating commands - this happens when
+the point is before an open paren: (, [ or {
+the point is after a close paren: ), ] or }
+the region is active
+
+
+** Basic navigation
+
+h moves left
+j moves down
+k moves up
+l moves right
+f steps inside the list
+b moves back in history for all above commands
+
+** Paredit transformations, callable by plain letters:
+
+> slurps
+< barfs
+r raises
+C convolutes
+s moves down
+w moves up
+
+** IDE-like features for Elisp, Clojure, Scheme, Common Lisp, Hy, Python and Julia:
+
+e evals
+E evals and inserts
+g jumps to any tag in the current directory with semantic
+G jumps to any tag in the current file
+M-. jumps to symbol, M-, jumps back
+F jumps to symbol, D jumps back
+C-1 shows documentation in an overlay
+C-2 shows arguments in an overlay
+Z breaks out of edebug, while storing current function's arguments
+Some pictures here.
+
+** Code manipulation:
+i prettifies code (remove extra space, hanging parens ...)
+xi transforms cond expression to equivalent if expressions
+xc transforms if expressions to an equivalent cond expression
+x> transforms expressions from/to an equivalent thread-last expression
+xf flattens function or macro call (extract body and substitute arguments)
+xr evals and replaces
+xl turns current defun into a lambda
+xd turns current lambda into a defun
+O formats the code into one line
+M formats the code into multiple lines
+Misc. bindings:
+outlines navigation/folding (J, K, I, i)
+narrow/widen (N, W)
+ediff (b, B)
+ert (T)
+edebug (xe)
+q provides ace-jump like behaviour to any parenthesis
