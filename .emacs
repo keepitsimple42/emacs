@@ -118,12 +118,24 @@
               (("C-c n i" . org-roam-insert))))
 
 
+
+;; calendar insert date
+(defun calendar-insert-date ()
+  "Capture the date at point, exit the Calendar, insert the date."
+  (interactive)
+  (seq-let (month day year) (save-match-data (calendar-cursor-to-date))
+    (calendar-exit)
+    (insert (format "%d-%02d-%02d" year month day))))
+
+(define-key calendar-mode-map (kbd "RET") 'calendar-insert-date)
+
+
 ;;this puts helpful error messages relating tothe org-mode sbe functionin the *MESSAGES* buffer
 (defadvice org-sbe (around get-err-msg activate)
   "Issue messages at errors."
   (condition-case err
       (progn
-    ad-do-it)
+	ad-do-it)
     ((error debug)
      (message "Error in sbe: %S" err)
      (signal (car err) (cdr err)))))
