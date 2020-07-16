@@ -3,6 +3,9 @@
 ;; set this to nil to speed up load time and to t to install missing packages
 (setq *do-installs* nil)
 
+;; change to python3
+(setq python-shell-interpreter "python3")
+
 (fset 'yes-or-no-p 'y-or-n-p) ; stops having to type 'yes' when y will do
 ;; (setq kill-buffer-query-functions
 ;;       (remq 'process-kill-buffer-query-function
