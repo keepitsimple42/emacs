@@ -83,6 +83,10 @@
 		      (package-install package))))
 
 
+;; undo tree
+(global-undo-tree-mode)
+
+
 ;; set up the path for godoc
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
