@@ -4,7 +4,7 @@
 (setq *do-installs* nil)
 
 ;; change to python3
-(setq python-shell-interpreter "python3")
+ (setq python-shell-interpreter "python3")
 
 (fset 'yes-or-no-p 'y-or-n-p) ; stops having to type 'yes' when y will do
 ;; (setq kill-buffer-query-functions
@@ -15,6 +15,8 @@
 
 ;possible fix for C-SPC in terminus
 (global-set-key (kbd "§") 'set-mark-command)
+
+
 
 ;;; to enable thing at point mode
 (require 'thingatpt)
@@ -43,10 +45,11 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (add-to-list 'load-path "~/.emacs.d/lisp/bookmark-plus/")
 
+
 ;;**************work around********
 ;;this fixes the emacs 26 TLS bug
-;(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu")))
-;not needed now I can build 26.3 on the Pi
+					;(setq package-archives '(("gnu" . "http://mirrors.163.com/elpa/gnu")))
+					;not needed now I can build 26.3 on the Pi
 
 ;; the melpa emacs package archive
 (require 'package)
@@ -83,8 +86,7 @@
 		      (package-install package))))
 
 
-;; undo tree
-(global-undo-tree-mode)
+
 
 
 ;; set up the path for godoc
@@ -950,10 +952,17 @@ picked from random-quote-file."
 (setq initial-buffer-choice "my-buffer")
 
 
+;; chez-scheme
+(require 'geiser)
+(setq geiser-active-implementations '(chez guile racket chicken mit chibi gambit))
+(add-hook 'scheme-mode-hook 'geiser-mode)
+(setq geiser-default-implementation 'chez)
+(setq geiser-chez-binary "chezscheme")
+
 
 ;;***************************geiser*****************************************
 ;;sets up a REPL for scheme (such as geiser)
-;(require 'geiser-install)
+					;(require 'geiser-install)
 
 
 
@@ -961,8 +970,8 @@ picked from random-quote-file."
 ;;add further languages here as required
 
 (org-babel-do-load-languages
-  'org-babel-load-languages
-    '((python . t)))
+ 'org-babel-load-languages
+ '((python . t)))
 
 (org-babel-do-load-languages
   'org-babel-load-languages
@@ -1209,3 +1218,8 @@ Files larger than `bjm/backup-file-size-limit' are not backed up."
 (global-set-key (kbd "C-c kw") 'my-delete-leading-whitespace)
 
 (global-set-key (kbd "C-c 1") 'just-one-space)
+
+
+;;; idris2
+(add-to-list 'load-path "~/.emacs.d/idris2-mode/")
+(require 'idris2-mode)
