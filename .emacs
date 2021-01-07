@@ -915,7 +915,7 @@ picked from random-quote-file."
 (setq calendar-longitude -3.13194444445)
      (setq calendar-location-name "Clydach, Brecon Beacons National Park")
 ;;set local time
-(set-time-zone-rule "GMT-1")
+(set-time-zone-rule "GMT")
 
 ;;*****************Make emacs do some custom things on start up************
 
@@ -935,7 +935,7 @@ picked from random-quote-file."
       (insert (number-to-string (time-to-day-in-year (current-time))))
       (insert "\n\n")
       ;;the number of days left to go this year
-      (insert (number-to-string (org-time-stamp-to-now "2020-12-31")))
+      (insert (number-to-string (org-time-stamp-to-now "2021-12-31")))
       (insert "\n\n")
       ;; the number of days until I am 60
       ;;(insert (number-to-string (org-time-stamp-to-now "2028-01-07")))
