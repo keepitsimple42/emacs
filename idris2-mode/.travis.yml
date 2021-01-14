@@ -1,0 +1,59 @@
+# Based on https://docs.haskellstack.org/en/stable/travis_ci/
+#
+# Copy these contents into the root directory of your Github project in a file
+# named .travis.yml
+
+# choose a build environment
+dist: xenial
+
+# Use new container infrastructure to enable caching
+sudo: false
+
+# Do not choose a language; we provide our own build tools.
+language: generic
+
+matrix:
+  include:
+    - env: EMACS_VERSION=24.5 IDRIS_VERSION=git
+    - env: EMACS_VERSION=24.5 IDRIS_VERSION=stackage
+    - env: EMACS_VERSION=25.3 IDRIS_VERSION=git
+    - env: EMACS_VERSION=25.3 IDRIS_VERSION=stackage
+    - env: EMACS_VERSION=26.1 IDRIS_VERSION=git
+    - env: EMACS_VERSION=26.1 IDRIS_VERSION=stackage
+
+# Caching so the next build will be fast too.
+cache:
+  directories:
+  - $HOME/.stack
+
+# Ensure necessary system libraries are present
+addons:
+  apt:
+    packages:
+      - libgc-dev
+
+before_install:
+  # Download and unpack the stack executable
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+
+  ## Emacs
+  - sudo apt-get install -y libgif-dev libxaw7-dev
+  - wget http://ftpmirror.gnu.org/emacs/emacs-${EMACS_VERSION}.tar.xz
+  - tar -xf emacs-${EMACS_VERSION}.tar.xz
+  - cd emacs-${EMACS_VERSION}
+  - ./configure --prefix=/usr/local/emacs-${EMACS_VERSION} --with-gnutls=no
+  - make
+  - sudo make install
+  - cd ..
+
+# Install Idris
+install: . ./.travis_install.sh
+
+before_script: true
+
+script:
+  - make clean
+  - make build
+  - make test EMACS=/usr/local/emacs-${EMACS_VERSION}/bin/emacs
